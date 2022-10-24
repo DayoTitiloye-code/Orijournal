@@ -30,6 +30,13 @@ main {
     margin-top: 15em;
 }
 
+h3 {
+    margin-bottom: 20em;
+}
+.navlink {
+    color: green !important;
+}
+
 h1 {
     display: block;
 }
