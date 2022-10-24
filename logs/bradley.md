@@ -10,3 +10,6 @@
 - Created GET request which allows user friendly URLs
 - Buttons can show and hide pop up form for posts
 - Changed file paths to suit changes made in API
+- Created POST requests to send user data to server side and save to JSON
+- Used GET requests to bring JSON data to clientside
+- Looped through posts and displayed them on community page
