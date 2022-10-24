@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Page</title>
+    <script src="/js/community.js" defer></script>
+    <link rel="stylesheet" href="/css/community.css">
+</head>
+<body>
+    <button id="post-button">Pop Up</button>
+    <div id="write-post">
+        <button id="exit-button"><i class="bi bi-file-x-fill"></i></button>
+        <h2>Write Your Post!</h2>
+        <form id="post-form">
+            <section id="title">
+                <label for="title">Give your post a subject:</label><br>
+                <input type="text" name="title" id="title">
+            </section>
+            <section id="post">
+                <label for="post">Write your post:</label><br>
+                <textarea name="post" id="post" placeholder="500 characters max." rows="10" cols="40" maxlength="500"></textarea>
+            </section>
+        </form>
+        <input type="submit" value="Send">
+    </div>
+    <button id="test-send">SEND</button>
+</body>
+</html>
