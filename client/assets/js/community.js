@@ -80,11 +80,12 @@ function sendData(e) {
 
 function showForm (e) {
     e.preventDefault();
-    document.querySelector('#write-post').style.display = "block"
+    document.querySelector('#write-post').style.display = "block";
 }
 
 function hideForm (e) {
-    
+    e.preventDefault();
+    document.querySelector('#write-post').style.display = "none"
 }
 
 
@@ -94,17 +95,17 @@ display()
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const jFormData = new FormData(e.target);
+    const outputTitle = document.querySelector("#titleinput");
+    // console.log(outputTitle.value);
 
-    const dataObject = Object.fromEntries(jFormData.entries());
+    const outputPost = document.querySelector("#inputPost");
 
-    const outputData = document.querySelector(".output-pre");
-    outputData.innerText = JSON.stringify(dataObject, null, 2); 
+
+    
 })
     
 
-e.preventDefault();
-    document.querySelector('#write-post').style.display = "none"
 
 
-display()
+
+

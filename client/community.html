@@ -17,8 +17,8 @@
         <h2>Write Your Post!</h2>
         <form id="post-form">
             <section id="title">
-                <label for="title">Give your post a subject:</label><br>
-                <input type="text" name="title" id="title">
+                <label for="titleinput">Give your post a title:</label><br>
+                <input type="text" name="titleinput" id="titleinput">
             </section>
             <section id="post-gif">
                 <input type="text" id="search" placeholder="Search for GIF">
@@ -26,13 +26,14 @@
                 <div id="results"> </div>
                 <div id="result"> </div>
             </section>
-            <section id="post">
-                <label for="post">Write your post:</label><br>
+            <section id="postinput">
+                <label for="post">Tell us more!:</label><br>
                 <textarea name="post" id="post" placeholder="500 characters max." rows="10" cols="40"
                     maxlength="500"></textarea>
             </section>
+            <input type="submit" value="Send">
         </form>
-        <input type="submit" value="Send">
+        
     </div>
     <button id="test-send">SEND</button>
 </body>
