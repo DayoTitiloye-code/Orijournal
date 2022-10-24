@@ -19,8 +19,6 @@ function getGif(){
      
         data.data.forEach((obj) =>{
             console.log(obj.images.downsized.url)
-            // const url = obj.images.original.url
-            // const alternative = obj.title
             let a = document.createElement('a')
             let img = document.createElement('img')
             img.style.width = '70px'
@@ -38,15 +36,8 @@ function getGif(){
                 results.style.visibility = 'hidden'
             })
             
-            // resultsHtml += `<img src='${url}' height='100px' width='100px' alt='${alternative}'></img>`
-            
-            // resultsHtml.addEventListener('click', (e)=>{
-                
-            //     results.append(resultsHtml)
-            // })
-        })
 
-        // results.innerHTML = resultsHtml
+        })
         
         search.value = ''
     })
