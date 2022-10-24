@@ -11,10 +11,17 @@
 <body>
     <button id="post-button">Pop Up</button>
     <div id="write-post">
-        <button id="exit-button">X</button>
-        <h2>Write Post</h2>
+        <button id="exit-button"><i class="bi bi-file-x-fill"></i></button>
+        <h2>Write Your Post!</h2>
         <form id="post-form">
-            <input type="text">
+            <section id="title">
+                <label for="title">Give your post a subject:</label><br>
+                <input type="text" name="title" id="title">
+            </section>
+            <section id="post">
+                <label for="post">Write your post:</label><br>
+                <textarea name="post" id="post" placeholder="500 characters max." rows="10" cols="40" maxlength="500"></textarea>
+            </section>
         </form>
         <button id="send-button">Send</button>
     </div>
