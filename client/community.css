@@ -1,0 +1,9 @@
+#write-post {
+    border: 1px solid ;
+    width: 60%;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}

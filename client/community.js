@@ -1,4 +1,7 @@
 const body = document.querySelector('body');
+const postButton = document.querySelector('#post-button')
+
+postButton.addEventListener('click', showForm)
 
 function display() {
     fetch('http://localhost:3000/')
@@ -11,6 +14,15 @@ function display() {
         }
         
     })
+}
+
+function showForm (e) {
+    e.preventDefault();
+    document.querySelector('#write-post').style.display = "block"
+}
+
+function hideForm (e) {
+    
 }
 
 display()
