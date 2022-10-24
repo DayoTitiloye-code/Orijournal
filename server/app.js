@@ -17,8 +17,11 @@ function getData() {
     return data
 }
 
-function saveData () {
-  console.log("Testing")
+function saveData (data) {
+  let fileName = 'data.json';
+  let m = JSON.parse(fs.readFileSync(fileName).toString());
+  m.posts.push(data)
+  fs.writeFileSync(fileName, JSON.stringify(m));
 }
 
 app.use(express.static(path.join(__dirname, '../client/assets')))
@@ -32,7 +35,8 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../client/index.ht
 app.get('/community', async (req, res) => res.sendFile(path.join(__dirname, '../client/community.html')))
 
 app.post('/community', async (req, res) => {
-  saveData()
+  console.log()
+  saveData(req.body)
 })
 
 
