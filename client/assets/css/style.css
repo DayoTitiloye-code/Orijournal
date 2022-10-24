@@ -9,7 +9,8 @@
 body {
     justify-content: center;
     text-align: center !important;
-    background-image: url("/Project/Orijournal/client/assets/background/wp7359868-3840x2160-autumn-wallpapers.jpg");
+    background-image: url("https://wallpapercave.com/wp/wp7359868.jpg");
+    background-size: cover;
     
 }
 
@@ -28,7 +29,12 @@ div {
 
 main {
     margin-top: 15em;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
 }
+
+
 
 h3 {
     margin-bottom: 20em;
@@ -38,6 +44,7 @@ h3 {
 h1 {
     display: block;
     color: black;
+    margin-top: 10px;
 }
 
 

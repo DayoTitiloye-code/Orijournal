@@ -67,15 +67,26 @@ function display() {
 
 function sendData(e) {
     e.preventDefault()
-    console.log("Pressed")
-    const url = "http://localhost:3000/results"
-    const options = {
-    method: 'POST',
-    body: JSON.stringify({text: "Awesome Blog Post", likes: 5})
+    console.log("Pressed") 
+    fetch("http://localhost:3000/community", {
+     
+    // Adding method type
+    method: "POST",
+     
+    // Adding body or contents to send
+    body: JSON.stringify({text: "I finally did it", likes: 5}),
+     
+    // Adding headers to the request
+    headers: {
+        "Content-type": "application/json; charset=UTF-8"
     }
-    fetch(url, options)
-    .then(console.log("Posted post"))
-    .catch(err => console.warn('Opa, something went wrong!', err))  
+})
+ 
+// Converting to JSON
+.then(response => response.json())
+ 
+// Displaying results to console
+.then(json => console.log(json));
 }
 
 function showForm (e) {
@@ -87,10 +98,6 @@ function hideForm (e) {
     e.preventDefault();
     document.querySelector('#write-post').style.display = "none"
 }
-
-
-
-display()
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -104,8 +111,3 @@ form.addEventListener('submit', (e) => {
     
 })
     
-
-
-
-
-
