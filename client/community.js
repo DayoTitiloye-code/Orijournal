@@ -1,7 +1,11 @@
 const body = document.querySelector('body');
 const postButton = document.querySelector('#post-button')
-
+const exitButton = document.querySelector('#exit-button')
+const sendButton = document.querySelector('#send-button')
+const testButton = document.querySelector('#test-send')
 postButton.addEventListener('click', showForm)
+exitButton.addEventListener('click', hideForm)
+testButton.addEventListener('click', sendData)
 
 function display() {
     fetch('http://localhost:3000/')
@@ -16,13 +20,27 @@ function display() {
     })
 }
 
+function sendData(e) {
+    e.preventDefault()
+    console.log("Pressed")
+    const url = "http://localhost:3000/results"
+    const options = {
+    method: 'POST',
+    body: JSON.stringify({text: "Awesome Blog Post", likes: 5})
+    }
+    fetch(url, options)
+    .then(console.log("Posted post"))
+    .catch(err => console.warn('Opa, something went wrong!', err))  
+}
+
 function showForm (e) {
     e.preventDefault();
     document.querySelector('#write-post').style.display = "block"
 }
 
 function hideForm (e) {
-    
+    e.preventDefault();
+    document.querySelector('#write-post').style.display = "none"
 }
 
 display()
