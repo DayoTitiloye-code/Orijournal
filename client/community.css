@@ -21,7 +21,7 @@ h2{
     font-family: 'Questrial';
 }
 
-section#heading {
+section#title {
     height: 5em;
     padding: 10px;
 }
@@ -40,6 +40,13 @@ label {
     font-family: 'Poppins';
 }
 
-button {
+button#exit-button {
     padding: 6px;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+}
+
+button#exit-button:hover {
+    color: red;
 }
