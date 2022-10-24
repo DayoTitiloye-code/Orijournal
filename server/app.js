@@ -18,7 +18,7 @@ function getData() {
 }
 
 function saveData () {
-  console.log("Yay it worked")
+  console.log("Testing")
 }
 
 app.use(express.static(path.join(__dirname, '../client/assets')))
