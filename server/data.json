@@ -1,0 +1,11 @@
+{"posts":
+[{"id" : 1,
+"text":"Test",
+"reactions":
+    {
+        "laugh" : 0,
+        "heart" : 0,
+        "angry" : 0
+    },
+    "dateTime" : "22-10-2022"
+}]}
