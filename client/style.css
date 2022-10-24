@@ -9,6 +9,7 @@
 body {
     justify-content: center;
     text-align: center !important;
+    
 }
 
 .cover-container {
@@ -21,16 +22,25 @@ header {
 
 div {
     display: block;
+    
 }
 
 main {
     margin-top: 15em;
 }
 
+h3 {
+    margin-bottom: 20em;
+}
+
+
 h1 {
     display: block;
+    color: white;
 }
+
 
 p {
     font-family: 'Questrial', sans-serif;
+    color: white;
 }
