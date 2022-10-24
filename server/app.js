@@ -26,7 +26,7 @@ function saveData (data) {
 
 app.use(express.static(path.join(__dirname, '../client/assets')))
 
-app.get('/data', (req, res) => {
+app.get('/getData', (req, res) => {
     res.send(getData())
   })
 

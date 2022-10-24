@@ -1,42 +1,42 @@
 {"posts":
-[{"id" : 1,
-"text":"Test",
-"reactions":
-    {
-        "laugh" : 0,
-        "heart" : 0,
-        "angry" : 0
+[{
+    "id" : 1,
+    "title": "A Good Day",
+    "text": "I finally did it", 
+    "comments": [],
+    "reactions": {
+        "laugh": 0,
+        "sad": 0,
+        "angry": 0
     },
-    "dateTime" : "22-10-2022"
+    "gif": "https://i.pinimg.com/originals/a9/e5/06/a9e506364ae6b6892e6a126a2f021206.gif",
+    "dateTime": "Feb 29"
 },
-{"id" : 1,
-"text":"gwge",
-"reactions":
-    {
-        "laugh" : 0,
-        "heart" : 0,
-        "angry" : 0
+{
+    "id" : 2,
+    "title": "Another One",
+    "text": "I finally did it", 
+    "comments": [],
+    "reactions": {
+        "laugh": 0,
+        "sad": 0,
+        "angry": 0
     },
-    "dateTime" : "22-10-2022"
+    "gif": "https://i.pinimg.com/originals/a9/e5/06/a9e506364ae6b6892e6a126a2f021206.gif",
+    "dateTime": "Feb 29"
 },
-{"id" : 1,
-"text":"efwgeew",
-"reactions":
-    {
-        "laugh" : 0,
-        "heart" : 0,
-        "angry" : 0
+{
+    "id" : 3,
+    "title": "Title",
+    "text": "I finally did it", 
+    "comments": [],
+    "reactions": {
+        "laugh": 0,
+        "sad": 0,
+        "angry": 0
     },
-    "dateTime" : "22-10-2022"
-},
-{"id" : 1,
-"text":"wefewfwef",
-"reactions":
-    {
-        "laugh" : 0,
-        "heart" : 0,
-        "angry" : 0
-    },
-    "dateTime" : "22-10-2022"
+    "gif": "https://i.pinimg.com/originals/a9/e5/06/a9e506364ae6b6892e6a126a2f021206.gif",
+    "dateTime": "Feb 29"
 }
+
 ]}
