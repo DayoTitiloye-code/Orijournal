@@ -35,7 +35,6 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../client/index.ht
 app.get('/community', async (req, res) => res.sendFile(path.join(__dirname, '../client/community.html')))
 
 app.post('/community', async (req, res) => {
-  console.log()
   saveData(req.body)
 })
 

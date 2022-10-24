@@ -23,7 +23,6 @@ function getGif(){
     fetch(`https://api.giphy.com/v1/gifs/search?q=${search.value}&api_key=${apiKey}&rating=pg&limit=10`)
     .then((response) => response.json())
     .then((data) => {
-        // console.log(data)
         let results = document.querySelector('#results')
         let result = document.querySelector('#result')
         
