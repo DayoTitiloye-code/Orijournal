@@ -1,8 +1,8 @@
 const body = document.querySelector('body');
-const postButton = document.querySelector('#post-button')
-const form = document.getElementById("post-form")
+const postButton = document.querySelector('#post-button');
+const form = document.getElementById("post-form");
 
-postButton.addEventListener('click', showForm)
+postButton.addEventListener('click', showForm);
 
 function display() {
     fetch('http://localhost:3000/')
@@ -29,3 +29,9 @@ function hideForm (e) {
 
 
 display()
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const jFormData = new FormData(e.target);
+    const dataObject = Object.fromEntries(jFormData.entries());
+})
