@@ -1,3 +1,5 @@
+//NEEDS TO BE MODIFIED FOR PROJECT CODE 
+
 let apiKey = `NLls5Old8idRIHlgjN8gBEsyCHM6MlSH`
 let search = document.querySelector('#search')
 let form = document.querySelector('#form')
@@ -6,7 +8,6 @@ form.addEventListener('submit', (e) =>{
     e.preventDefault()
     getGif()
 })
-
 
 function getGif(){
 
@@ -41,4 +42,20 @@ function getGif(){
         
         search.value = ''
     })
+}
+
+let toggler = document.querySelector('#toggler')
+
+toggler.addEventListener('click', (e)=>{
+    e.preventDefault()
+    toggleVisibility()
+})
+
+function toggleVisibility (){
+    let contents = document.querySelector('#contents')
+    if(contents.style.display === 'none'){
+        contents.style.display = 'block'
+    } else {
+        contents.style.display = 'none'
+    }
 }
