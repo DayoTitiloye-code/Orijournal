@@ -1,5 +1,9 @@
 const body = document.querySelector('body');
-const postButton = document.querySelector('#post-button')
+const postButton = document.querySelector('#post-button');
+const form = document.getElementById("post-form");
+
+postButton.addEventListener('click', showForm);
+
 const exitButton = document.querySelector('#exit-button')
 const sendButton = document.querySelector('#send-button')
 const testButton = document.querySelector('#test-send')
@@ -39,8 +43,27 @@ function showForm (e) {
 }
 
 function hideForm (e) {
-    e.preventDefault();
-    document.querySelector('#write-post').style.display = "none"
+    
 }
+
+
+
+display()
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const jFormData = new FormData(e.target);
+
+    const dataObject = Object.fromEntries(jFormData.entries());
+
+    const outputData = document.querySelector(".output-pre");
+    outputData.innerText = JSON.stringify(dataObject, null, 2); 
+})
+    
+
+e.preventDefault();
+    document.querySelector('#write-post').style.display = "none"
+
 
 display()
