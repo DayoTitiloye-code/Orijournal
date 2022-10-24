@@ -1,5 +1,6 @@
 const body = document.querySelector('body');
 const postButton = document.querySelector('#post-button')
+const form = document.getElementById("post-form")
 
 postButton.addEventListener('click', showForm)
 
@@ -24,5 +25,7 @@ function showForm (e) {
 function hideForm (e) {
     
 }
+
+
 
 display()
