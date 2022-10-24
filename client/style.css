@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Questrial';
+    src: url('assets/fonts/Questrial/Questrial-Regular.ttf');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    justify-content: center;
+    text-align: center !important;
+}
+
+.cover-container {
+    max-width: 42em;
+}
+
+
+header {
+    margin-bottom: 280px;
+}
+
+div {
+    display: block;
+}
+
+main {
+    margin-top: 15em;
+}
+
+h1 {
+    display: block;
+}
+
+p {
+    font-family: 'Questrial';
+}
