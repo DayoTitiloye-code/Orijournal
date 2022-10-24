@@ -9,6 +9,7 @@
 body {
     justify-content: center;
     text-align: center !important;
+    background-image: url("/Project/Orijournal/client/assets/background/wp7359868-3840x2160-autumn-wallpapers.jpg");
     
 }
 
@@ -36,11 +37,11 @@ h3 {
 
 h1 {
     display: block;
-    color: white;
+    color: black;
 }
 
 
 p {
     font-family: 'Questrial', sans-serif;
-    color: white;
+    color: black;
 }
