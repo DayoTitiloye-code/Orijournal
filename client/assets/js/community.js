@@ -1,6 +1,7 @@
 const body = document.querySelector('body');
 const postButton = document.querySelector('#post-button');
 const form = document.getElementById("post-form");
+const sortDesc = document.querySelector('#sort-button')
 
 postButton.addEventListener('click', showForm);
 
@@ -13,6 +14,7 @@ let search = document.querySelector('#search')
 postButton.addEventListener('click', showForm)
 exitButton.addEventListener('click', hideForm)
 testButton.addEventListener('click', sendComment)
+// sortDesc.addEventListener('click', sortByDesc)
 gifButton.addEventListener('click', (e) =>{
     e.preventDefault()
     getGif()
@@ -225,6 +227,15 @@ function sendComment (e, comment) {
     .then(json => console.log(json))
     .catch(err => console.warn);
 }
+
+// function sortByDesc (e) {
+//     e.preventDefault();
+//     fetch("http://localhost:3000/community/comment", {
+//         dateTime.map(obj => {
+//             return {...obj, date: new Date(obj.date)};
+//           })
+//     }
+// )}
 
 function addReaction (e, emoji, reaction) {
     e.preventDefault()    
