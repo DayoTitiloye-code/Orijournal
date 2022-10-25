@@ -21,3 +21,6 @@
 - Captured gif using ID and used the image source to save to JSON
 - Checked if gif exists, if not save empty string otherwise save image src
 - DateTime of posts saved in JSON
+- Used event listener to trigger comment POST request to save data in JSON
+- Passed comment element in to function so data can be saved distinctly
+

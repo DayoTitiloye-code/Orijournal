@@ -27,7 +27,8 @@ function addComment (data) {
   console.log(data)
   let fileName = 'data.json';
   let m = JSON.parse(fs.readFileSync(fileName).toString());
-  m.posts[data.post].comments.push(data)
+  let index = m.posts.findIndex(obj => obj.id == data.post)
+  m.posts[index].comments.push(data)
   fs.writeFileSync(fileName, JSON.stringify(m));
 }
 

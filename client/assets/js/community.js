@@ -79,7 +79,7 @@ function display() {
     .then(data => {
         for(let i = 0; i < data.posts.length; i++){
             let div = document.createElement('div')
-            div.id = 1
+            div.id = data.posts[i].id
             let title = document.createElement('h3')
             title.textContent = data.posts[i].title
             let p = document.createElement('p')
@@ -87,19 +87,52 @@ function display() {
             let gif = document.createElement('img')
             gif.src = data.posts[i].gif
             let form = document.createElement('form')
-            let comment = document.createElement('input')
+            let commentInput = document.createElement('input')
+            commentInput.id = "comment"
             let send = document.createElement('input')
             send.type = 'submit'
             send.value = "Send"
             let button = document.createElement('button')
-            button.textContent = "Show Comments"
-            form.append(comment)
+            button.textContent = "View Comments"
+
+            let divComments = document.createElement('div')
+            divComments.style.border = "thick solid #0000FF"
+            divComments.style.display = 'none'
+            button.addEventListener('click', toggleComments)
+            function toggleComments () {
+                if(divComments.style.display === 'none'){
+                    divComments.style.display = 'block'
+                    button.textContent = "Hide Comments"
+                } else{
+                    divComments.style.display = 'none'
+                    button.textContent = "View Comments"
+                }
+            }
+            // send.addEventListener('click', addComment)
+            // function addComment (e){
+            //     e.preventDefault()
+            //     let postComment = document.createElement('p')
+            //     postComment.append(comment.value)
+            //     divComments.append(postComment)
+            //     comment.value = ''
+            // }
+
+            for(let j = 0; j < data.posts[i].comments.length; j++){
+                let comment = document.createElement('p')
+                console.log(data.posts[i].comments[j].text)
+                comment.textContent = data.posts[i].comments[j].text
+                divComments.append(comment)
+            }
+
+            form.append(commentInput)
             form.append(send)
+            form.addEventListener('submit', e =>  sendComment(e, commentInput))
             div.append(title)
             div.append(p)
             div.append(gif)
             div.append(form)
             div.append(button)
+            div.append(divComments)
             body.append(div)
         }
     })
@@ -151,15 +184,15 @@ function sendPost(e) {
     // hideForm(e)
 }
 
-function sendComment (e) {
+function sendComment (e, comment) {
     e.preventDefault()
-    console.log("Pressed") 
+    console.log("Pressed")
     fetch("http://localhost:3000/community/comment", {
         method: "POST",
         body: JSON.stringify(
             {
-                post: 1,
-                text: "I finally did it", 
+                post: comment.parentNode.parentNode.id,
+                text: comment.value, 
                 dateTime: new Date()
             }),
         headers: {
