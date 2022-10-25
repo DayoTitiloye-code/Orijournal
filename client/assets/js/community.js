@@ -1,18 +1,16 @@
 const body = document.querySelector('body');
 const postButton = document.querySelector('#post-button');
 const form = document.getElementById("post-form");
-
+const cover = document.querySelector('.cover-container')
 postButton.addEventListener('click', showForm);
 
 const exitButton = document.querySelector('#exit-button')
 const sendButton = document.querySelector('#send-button')
-const testButton = document.querySelector('#test-send')
 const gifButton = document.querySelector('#btn-gif')
 let apiKey = `NLls5Old8idRIHlgjN8gBEsyCHM6MlSH`
 let search = document.querySelector('#search')
 postButton.addEventListener('click', showForm)
 exitButton.addEventListener('click', hideForm)
-testButton.addEventListener('click', sendComment)
 let gifChange = document.querySelector('#btn-remove')
 gifChange.style.display = 'none'
 gifButton.style.height ='25px'
@@ -143,6 +141,11 @@ function display() {
             let commentNumber = document.createElement('h6');
             commentNumber.id = '#commentnumber'
             commentNumber.textContent = `${data.posts[i].comments.length} comments`
+
+            let postDate = document.createElement('h5');
+            postDate.id = '#postdate'
+            postDate.textContent = `${data.posts[i].dateTime}`
+
             for(let j = 0; j < data.posts[i].comments.length; j++){
                 let comment = document.createElement('p')
                 console.log(data.posts[i].comments[j].text)
@@ -156,12 +159,13 @@ function display() {
             div.append(title)
             div.append(p)
             div.append(gif)
+            div.append(postDate)
             div.append(form)
             div.append(emojiDiv)
             div.append(button)
             div.append(commentNumber)
             div.append(divComments)
-            body.append(div)
+            cover.append(div)
         }
     })
     .catch(err => console.warn)
@@ -177,8 +181,7 @@ function getNow () {
 getNow()
 display()
  
-function sendPost(e) {
-    e.preventDefault()
+function sendPost() {
     console.log("Pressed") 
     const outputTitle = document.querySelector("#titleinput");
     const outputPost = document.querySelector("#post");
@@ -197,11 +200,12 @@ function sendPost(e) {
                     angry: 0
                 },
                 gif: gif ? gif.src : "",
-                dateTime: new Date()
+                dateTime: new Date
             }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }
+        
     })
     .then(response => response.json())
     .then(json => console.log(json))

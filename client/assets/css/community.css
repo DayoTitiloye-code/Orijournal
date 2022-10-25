@@ -3,9 +3,7 @@
 
 
 
-body {
-    position: relative;
-}
+
 
 #write-post {
     /* background-color: #D2DAFF; */
@@ -23,10 +21,7 @@ body {
     color: black;
 }
 
-div {
-    display: block;
-    position: sticky;
-}
+
 
 img {
     border-radius: 30px;

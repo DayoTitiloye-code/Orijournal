@@ -11,3 +11,5 @@
     - Changed font
 - Added a suitable background
 - Decided on a colour palette to use for the whole site
+
+- Added the post date to new posts

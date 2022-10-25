@@ -22,11 +22,12 @@
             </nav>
         </div>
     </header>
-    <button id="post-button">Pop Up</button>
-    <div id="write-post">
-        <button id="exit-button"><i class="bi bi-file-x-fill"></i></button>
-        <h2>Write Your Post!</h2>
-        <form id="post-form">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+        <button id="post-button">Pop Up</button>
+        <div id="write-post">
+            <button id="exit-button"><i class="bi bi-file-x-fill"></i></button>
+            <h2>Write Your Post!</h2>
+            <form id="post-form">
             <section id="title">
                 <label for="titleinput">Give your post a title:</label><br>
                 <input type="text" name="titleinput" id="titleinput" placeholder="Title of post">
@@ -49,8 +50,9 @@
             <input type="submit" value="Post" id="sendInForm">
         </form>
 
+        </div>
+        
     </div>
-    <button id="test-send">SEND</button>
 </body>
 
 </html>
