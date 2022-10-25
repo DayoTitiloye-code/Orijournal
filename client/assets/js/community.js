@@ -106,6 +106,14 @@ function display() {
     .catch(err => console.warn)
 }
 
+function getNow () {
+    let now = new Date();
+    console.log(now)
+    console.log(now.toLocaleString)
+    console.log(`${now.getDate()}/${now.getMonth()+1}`)
+}
+
+getNow()
 display()
  
 function sendPost(e) {
@@ -113,8 +121,7 @@ function sendPost(e) {
     console.log("Pressed") 
     const outputTitle = document.querySelector("#titleinput");
     const outputPost = document.querySelector("#post");
-    const gif = document.querySelector("#result");
-    console.log(gif)
+    const gif = document.querySelector("#result img");
 
     fetch("http://localhost:3000/community", {
         method: "POST",
@@ -128,8 +135,8 @@ function sendPost(e) {
                     sad: 0,
                     angry: 0
                 },
-                gif: "https://example.com",
-                dateTime: "Feb 29"
+                gif: gif ? gif.src : "",
+                dateTime: new Date()
             }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -141,7 +148,7 @@ function sendPost(e) {
 
     outputTitle.value = ""
     outputPost.value = ""
-    hideForm(e)
+    // hideForm(e)
 }
 
 function sendComment (e) {
@@ -153,7 +160,7 @@ function sendComment (e) {
             {
                 post: 1,
                 text: "I finally did it", 
-                dateTime: "Feb 29"
+                dateTime: new Date()
             }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
