@@ -152,8 +152,8 @@ function display() {
             div.append(gif)
             div.append(form)
             div.append(emojiDiv)
-            div.append(button)
             div.append(commentNumber)
+            div.append(button) 
             div.append(divComments)
             body.append(div)
         }
