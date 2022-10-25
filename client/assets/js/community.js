@@ -100,19 +100,28 @@ function display() {
             let emojiDiv = document.createElement('div')
             emojiDiv.id = "emoji-div"
             let laughEmoji = document.createElement('a')
+            let laughCount = document.createElement('p')
             laughEmoji.innerHTML = '&#129315;'
+            laughCount = data.posts[i].reactions.laugh
             let shockEmoji = document.createElement('a')
+            let shockCount = document.createElement('p')
             shockEmoji.innerHTML = '&#128558;'
-            let angryEmoji = document.createElement('a')   
+            shockCount = data.posts[i].reactions.shock
+            let angryEmoji = document.createElement('a')
+            let angryCount = document.createElement('p') 
             angryEmoji.innerHTML = '&#128544;'   
+            angryCount = data.posts[i].reactions.angry
             laughEmoji.addEventListener('click', e => {
                 addReaction(e, laughEmoji, "laugh")},{once : true})
             shockEmoji.addEventListener('click', e => {addReaction(e, shockEmoji, "shock")},{once : true}) 
             angryEmoji.addEventListener('click', e => {
                 addReaction(e, angryEmoji, "angry")},{once : true})  
             emojiDiv.append(laughEmoji)
+            emojiDiv.append(laughCount)
             emojiDiv.append(shockEmoji)
+            emojiDiv.append(shockCount)
             emojiDiv.append(angryEmoji)
+            emojiDiv.append(angryCount)
 
             let button = document.createElement('button')
             button.textContent = "View Comments"
