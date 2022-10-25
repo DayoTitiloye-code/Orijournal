@@ -13,8 +13,13 @@ let search = document.querySelector('#search')
 postButton.addEventListener('click', showForm)
 exitButton.addEventListener('click', hideForm)
 testButton.addEventListener('click', sendComment)
+let gifChange = document.querySelector('#btn-remove')
+gifChange.style.display = 'none'
+gifButton.style.height ='25px'
+gifButton.style.width ='100px'
 gifButton.addEventListener('click', (e) =>{
     e.preventDefault()
+    gifChange.style.display ='block'
     getGif()
 })
 form.addEventListener('submit', sendPost)
