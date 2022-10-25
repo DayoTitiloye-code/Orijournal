@@ -23,4 +23,8 @@
 - DateTime of posts saved in JSON
 - Used event listener to trigger comment POST request to save data in JSON
 - Passed comment element in to function so data can be saved distinctly
+- Created elements for emojis and added event listeners to detect clicks
+- Created a PUT request to increment reactions for posts in JSON
+- Changed fetch URLs so they only request using endpoints 
+- Emojis have their own event listeners but utilise the same function
 

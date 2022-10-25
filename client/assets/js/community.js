@@ -180,7 +180,7 @@ function sendPost(e) {
     const outputPost = document.querySelector("#post");
     const gif = document.querySelector("#result img");
 
-    fetch("http://localhost:3000/community", {
+    fetch("/community", {
         method: "POST",
         body: JSON.stringify(
             {
@@ -211,7 +211,7 @@ function sendPost(e) {
 function sendComment (e, comment) {
     e.preventDefault()
     console.log("Pressed")
-    fetch("http://localhost:3000/community/comment", {
+    fetch("/community/comment", {
         method: "POST",
         body: JSON.stringify(
             {
