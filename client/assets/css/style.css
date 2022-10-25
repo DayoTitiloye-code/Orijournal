@@ -13,7 +13,6 @@ body {
     text-align: center !important;
     background-image: url("https://wallpaperaccess.com/full/93239.jpg");
     background-size: cover;
-    
 }
 
 .cover-container {
@@ -85,6 +84,7 @@ p {
 
 .btn:hover {
     background-color: #536162 !important;
-    letter-spacing: 2px !important;
+    transform: scale(1.1) !important;
     transition: 0.5s !important;
+
 }
