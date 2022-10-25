@@ -76,7 +76,7 @@ function getGif(){
 }
 
 function display() {
-    fetch('http://localhost:3000/getData')
+    fetch('/getData')
     .then(resp => resp.json())
     .then(data => {
         for(let i = 0; i < data.posts.length; i++){
@@ -94,11 +94,27 @@ function display() {
             let send = document.createElement('input')
             send.type = 'submit'
             send.value = "Send"
+
+            let emojiDiv = document.createElement('div')
+            emojiDiv.id = "emoji-div"
+            let laughEmoji = document.createElement('a')
+            laughEmoji.innerHTML = '&#129315;'
+            let shockEmoji = document.createElement('a')
+            shockEmoji.innerHTML = '&#128558;'
+            let angryEmoji = document.createElement('a')   
+            angryEmoji.innerHTML = '&#128544;'   
+            laughEmoji.addEventListener('click', e => {
+                addReaction(e, laughEmoji, "laugh")},{once : true})
+            shockEmoji.addEventListener('click', e => {addReaction(e, shockEmoji, "shock")},{once : true}) 
+            angryEmoji.addEventListener('click', e => {
+                addReaction(e, angryEmoji, "angry")},{once : true})  
+            emojiDiv.append(laughEmoji)
+            emojiDiv.append(shockEmoji)
+            emojiDiv.append(angryEmoji)
+
             let button = document.createElement('button')
             button.textContent = "View Comments"
-            // Adding a button to sort by newest
-            let sortButton = document.createElement('button')
-            sortButton.textContent = "Sort by newest"
+
             let divComments = document.createElement('div')
             divComments.style.border = "thick solid #0000FF"
             divComments.style.display = 'none'
@@ -120,7 +136,6 @@ function display() {
             //     divComments.append(postComment)
             //     comment.value = ''
             // }
-            divComments.append(sortButton)
             let commentNumber = document.createElement('h6');
             commentNumber.id = '#commentnumber'
             commentNumber.textContent = `${data.posts[i].comments.length} comments`
@@ -129,10 +144,8 @@ function display() {
                 console.log(data.posts[i].comments[j].text)
                 comment.textContent = data.posts[i].comments[j].text
                 divComments.append(comment)
-                
             }
 
-            
             form.append(commentInput)
             form.append(send)
             form.addEventListener('submit', e =>  sendComment(e, commentInput))
@@ -140,8 +153,9 @@ function display() {
             div.append(p)
             div.append(gif)
             div.append(form)
-            div.append(commentNumber)
+            div.append(emojiDiv)
             div.append(button)
+            div.append(commentNumber)
             div.append(divComments)
             body.append(div)
         }
@@ -222,6 +236,24 @@ function sendComment (e, comment) {
 //           })
 //     }
 // )}
+
+function addReaction (e, emoji, reaction) {
+    e.preventDefault()    
+    console.log(reaction + " clicked")
+    fetch("/community/react", {
+        method: "PUT",
+        body: JSON.stringify({
+            id: emoji.parentNode.parentNode.id,
+            emoji: reaction
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(err => console.warn);
+}
 
 function showForm (e) {
     e.preventDefault();
