@@ -145,7 +145,6 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const outputTitle = document.querySelector("#titleinput");
-    // console.log(outputTitle.value);
 
     const outputPost = document.querySelector("#inputPost");
 
