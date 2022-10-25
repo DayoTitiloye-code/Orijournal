@@ -12,7 +12,7 @@ let apiKey = `NLls5Old8idRIHlgjN8gBEsyCHM6MlSH`
 let search = document.querySelector('#search')
 postButton.addEventListener('click', showForm)
 exitButton.addEventListener('click', hideForm)
-testButton.addEventListener('click', sendData)
+testButton.addEventListener('click', sendComment)
 gifButton.addEventListener('click', (e) =>{
     e.preventDefault()
     getGif()
@@ -57,24 +57,34 @@ function display() {
     .then(data => {
         for(let i = 0; i < data.posts.length; i++){
             let div = document.createElement('div')
+            div.id = 1
             let title = document.createElement('h3')
             title.textContent = data.posts[i].title
             let p = document.createElement('p')
             p.textContent = data.posts[i].text
             let gif = document.createElement('img')
             gif.src = data.posts[i].gif
+            let form = document.createElement('form')
+            let comment = document.createElement('input')
+            let send = document.createElement('input')
+            send.type = 'submit'
+            send.value = "Send"
             let button = document.createElement('button')
             button.textContent = "Show Comments"
+            form.append(comment)
+            form.append(send)
             div.append(title)
             div.append(p)
             div.append(gif)
+            div.append(form)
             div.append(button)
             body.append(div)
         }
     })
+    .catch(err => console.warn)
 }
 
-function sendData(e) {
+function sendPost(e) {
     e.preventDefault()
     console.log("Pressed") 
     fetch("http://localhost:3000/community", {
@@ -97,8 +107,29 @@ function sendData(e) {
         }
     })
     .then(response => response.json())
-    .then(json => console.log(json));
-    }
+    .then(json => console.log(json))
+    .catch(err => console.warn);
+}
+
+function sendComment (e) {
+    e.preventDefault()
+    console.log("Pressed") 
+    fetch("http://localhost:3000/community/comment", {
+        method: "POST",
+        body: JSON.stringify(
+            {
+                post: 1,
+                text: "I finally did it", 
+                dateTime: "Feb 29"
+            }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(err => console.warn);
+}
 
 function showForm (e) {
     e.preventDefault();
