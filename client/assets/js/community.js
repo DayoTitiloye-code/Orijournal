@@ -205,7 +205,7 @@ function sendPost() {
                 comments: [],
                 reactions: {
                     laugh: 0,
-                    sad: 0,
+                    shock: 0,
                     angry: 0
                 },
                 gif: gif ? gif.src : "",
