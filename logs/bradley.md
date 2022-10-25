@@ -13,3 +13,6 @@
 - Created POST requests to send user data to server side and save to JSON
 - Used GET requests to bring JSON data to clientside
 - Looped through posts and displayed them on community page
+- Created input elements in posts to allow users to write comments
+- Added endpoint to allow comments to be posted to the server
+- Converted comments to JSON and pushed them to the relevant post

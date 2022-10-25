@@ -5,7 +5,7 @@ const cors = require('cors');
 const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json())
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended: true}));
 
 let fs = require('fs');
 
@@ -13,7 +13,6 @@ let fs = require('fs');
 function getData() {
     let fileName = 'data.json';
     let data = JSON.parse(fs.readFileSync(fileName).toString());
-    console.log(data)
     return data
 }
 
@@ -21,6 +20,14 @@ function saveData (data) {
   let fileName = 'data.json';
   let m = JSON.parse(fs.readFileSync(fileName).toString());
   m.posts.push(data)
+  fs.writeFileSync(fileName, JSON.stringify(m));
+}
+
+function addComment (data) {
+  console.log(data)
+  let fileName = 'data.json';
+  let m = JSON.parse(fs.readFileSync(fileName).toString());
+  m.posts[data.post].comments.push(data)
   fs.writeFileSync(fileName, JSON.stringify(m));
 }
 
@@ -38,5 +45,9 @@ app.post('/community', async (req, res) => {
   saveData(req.body)
 })
 
+app.post('/community/comment', async (req, res) => {
+  addComment(req.body)
+  // console.log(req.body)
+})
 
 app.listen(port, () => console.log(`Now running on http://localhost:${port}`))
