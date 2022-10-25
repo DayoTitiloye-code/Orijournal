@@ -27,4 +27,4 @@
 - Created a PUT request to increment reactions for posts in JSON
 - Changed fetch URLs so they only request using endpoints 
 - Emojis have their own event listeners but utilise the same function
-
+- Added counter to display how many reactions each post received
