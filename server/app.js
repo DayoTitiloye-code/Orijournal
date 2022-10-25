@@ -32,6 +32,15 @@ function addComment (data) {
   fs.writeFileSync(fileName, JSON.stringify(m));
 }
 
+function addReaction (data) {
+  console.log(data.emoji)
+  let fileName = 'data.json';
+  let m = JSON.parse(fs.readFileSync(fileName).toString());
+  let index = m.posts.findIndex(obj => obj.id == data.id)
+  m.posts[index].reactions[data.emoji] ++
+  fs.writeFileSync(fileName, JSON.stringify(m));
+}
+
 app.use(express.static(path.join(__dirname, '../client/assets')))
 
 app.get('/getData', (req, res) => {
@@ -48,7 +57,11 @@ app.post('/community', async (req, res) => {
 
 app.post('/community/comment', async (req, res) => {
   addComment(req.body)
-  // console.log(req.body)
 })
+
+app.put('/community/react', async (req, res) => {
+  addReaction(req.body)
+})
+
 
 app.listen(port, () => console.log(`Now running on http://localhost:${port}`))
