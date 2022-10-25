@@ -8,9 +8,20 @@
     <title>Community Page</title>
     <script src="/js/community.js" defer></script>
     <link rel="stylesheet" href="/css/community.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 
 <body>
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">orijournal.</h3>
+            <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link active" href="/"><i class="bi bi-house"></i>&nbsp home</a>
+                <a class="nav-link" href="/community"><i class="bi bi-chat-dots"></i>&nbsp community</a>
+                <a class="nav-link" href="#"><i class="bi bi-chat-square-text"></i>&nbsp about</a>
+            </nav>
+        </div>
+    </header>
     <button id="post-button">Pop Up</button>
     <div id="write-post">
         <button id="exit-button"><i class="bi bi-file-x-fill"></i></button>
@@ -18,21 +29,24 @@
         <form id="post-form">
             <section id="title">
                 <label for="titleinput">Give your post a title:</label><br>
-                <input type="text" name="titleinput" id="titleinput">
+                <input type="text" name="titleinput" id="titleinput" placeholder="Title of post">
             </section>
+
             <section id="post-gif">
+                <label for="gifinput">Give your post a gif:</label><br>
                 <input type="text" id="search" placeholder="Search for GIF">
-                <button id="btn-gif">Get gif</button>
-                <button id="btn-remove">Change gif</button>
-                <div id="results"> </div>
-                <div id="result"> </div>
+                <div id="gifbtns">
+                    <button id="btn-gif">Get gif</button>
+                    <button id="btn-remove">Change gif</button>
+                </div>
             </section>
+            <div id="results"> </div>
+            <div id="result"> </div>
             <section id="postinput">
                 <label for="post">Tell us more!:</label><br>
-                <textarea name="post" id="post" placeholder="500 characters max." rows="10" cols="40"
-                    maxlength="500"></textarea>
+                <textarea name="post" id="post" placeholder="500 characters max." maxlength="500"></textarea>
             </section>
-            <input type="submit" value="Send">
+            <input type="submit" value="Post" id="sendInForm">
         </form>
 
     </div>

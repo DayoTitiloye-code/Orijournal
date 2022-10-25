@@ -1,7 +1,6 @@
 const body = document.querySelector('body');
 const postButton = document.querySelector('#post-button');
 const form = document.getElementById("post-form");
-const sortDesc = document.querySelector('#sort-button')
 
 postButton.addEventListener('click', showForm);
 
@@ -14,9 +13,14 @@ let search = document.querySelector('#search')
 postButton.addEventListener('click', showForm)
 exitButton.addEventListener('click', hideForm)
 testButton.addEventListener('click', sendComment)
-// sortDesc.addEventListener('click', sortByDesc)
+let gifChange = document.querySelector('#btn-remove')
+gifChange.style.display = 'none'
+gifButton.style.height ='25px'
+gifButton.style.width ='100px'
+
 gifButton.addEventListener('click', (e) =>{
     e.preventDefault()
+    gifChange.style.display ='block'
     getGif()
 })
 form.addEventListener('submit', sendPost)
