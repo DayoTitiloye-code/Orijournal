@@ -23,12 +23,13 @@ function getGif(){
     fetch(`https://api.giphy.com/v1/gifs/search?q=${search.value}&api_key=${apiKey}&rating=pg&limit=10`)
     .then((response) => response.json())
     .then((data) => {
+        // console.log(data)
         let results = document.querySelector('#results')
         let result = document.querySelector('#result')
         
         data.data.forEach((obj) =>{
             console.log(obj.images.downsized.url)
-            let a = document.createElement('a')
+            // let a = document.createElement('a')
             let img = document.createElement('img')
             img.style.width = '70px'
             img.style.height = '70px'
@@ -36,15 +37,35 @@ function getGif(){
             img.src = obj.images.original.url
             img.alt =  obj.title
 
-            a.setAttribute('href', obj.images.downsized.url)
-            a.append(img)
-            results.append(a)
-            a.addEventListener('click', (e) =>{
+            // a.setAttribute('href', obj.images.downsized.url)
+            // a.append(img)
+            // results.append(a)
+            results.append(img)
+            function addGif(e){
+                result.style.display ='block'
+                console.log('heelo')
                 e.preventDefault()
-                result.append(a)
-                results.style.visibility = 'hidden'
-            })
+                let newImg = img
+                result.append(newImg)
+                results.style.display = 'none'
+            }
+            
+            
+            img.addEventListener('click', addGif)
 
+            let remove = document.querySelector('#btn-remove')
+
+            remove.addEventListener('click', (e) =>{
+                if(result.contains(img)){
+                    // 
+                    result.style.display = 'none'
+                    result.removeChild(img)
+                    results.style.display = 'block'
+                    results.append(img)
+                }  
+               
+            })
+            
         })
         
         search.value = ''
@@ -84,6 +105,8 @@ function display() {
     .catch(err => console.warn)
 }
 
+display()
+ 
 function sendPost(e) {
     e.preventDefault()
     console.log("Pressed") 
