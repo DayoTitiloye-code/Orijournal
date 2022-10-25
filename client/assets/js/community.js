@@ -17,6 +17,7 @@ let gifChange = document.querySelector('#btn-remove')
 gifChange.style.display = 'none'
 gifButton.style.height ='25px'
 gifButton.style.width ='100px'
+
 gifButton.addEventListener('click', (e) =>{
     e.preventDefault()
     gifChange.style.display ='block'
@@ -99,7 +100,9 @@ function display() {
             send.value = "Send"
             let button = document.createElement('button')
             button.textContent = "View Comments"
-
+            // Adding a button to sort by newest
+            let sortButton = document.createElement('button')
+            sortButton.textContent = "Sort by newest"
             let divComments = document.createElement('div')
             divComments.style.border = "thick solid #0000FF"
             divComments.style.display = 'none'
@@ -121,6 +124,7 @@ function display() {
             //     divComments.append(postComment)
             //     comment.value = ''
             // }
+            divComments.append(sortButton)
             let commentNumber = document.createElement('h6');
             commentNumber.id = '#commentnumber'
             commentNumber.textContent = `${data.posts[i].comments.length} comments`
@@ -129,8 +133,10 @@ function display() {
                 console.log(data.posts[i].comments[j].text)
                 comment.textContent = data.posts[i].comments[j].text
                 divComments.append(comment)
+                
             }
 
+            
             form.append(commentInput)
             form.append(send)
             form.addEventListener('submit', e =>  sendComment(e, commentInput))
@@ -138,8 +144,8 @@ function display() {
             div.append(p)
             div.append(gif)
             div.append(form)
-            div.append(button)
             div.append(commentNumber)
+            div.append(button)
             div.append(divComments)
             body.append(div)
         }
@@ -211,6 +217,15 @@ function sendComment (e, comment) {
     .then(json => console.log(json))
     .catch(err => console.warn);
 }
+
+// function sortByDesc (e) {
+//     e.preventDefault();
+//     fetch("http://localhost:3000/community/comment", {
+//         dateTime.map(obj => {
+//             return {...obj, date: new Date(obj.date)};
+//           })
+//     }
+// )}
 
 function showForm (e) {
     e.preventDefault();
