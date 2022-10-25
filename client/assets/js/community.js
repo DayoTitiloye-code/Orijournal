@@ -116,7 +116,9 @@ function display() {
             //     divComments.append(postComment)
             //     comment.value = ''
             // }
-
+            let commentNumber = document.createElement('h6');
+            commentNumber.id = '#commentnumber'
+            commentNumber.textContent = `${data.posts[i].comments.length} comments`
             for(let j = 0; j < data.posts[i].comments.length; j++){
                 let comment = document.createElement('p')
                 console.log(data.posts[i].comments[j].text)
@@ -132,6 +134,7 @@ function display() {
             div.append(gif)
             div.append(form)
             div.append(button)
+            div.append(commentNumber)
             div.append(divComments)
             body.append(div)
         }
