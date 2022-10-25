@@ -19,6 +19,7 @@ function getData() {
 function saveData (data) {
   let fileName = 'data.json';
   let m = JSON.parse(fs.readFileSync(fileName).toString());
+  data.id = m.posts.length+1
   m.posts.push(data)
   fs.writeFileSync(fileName, JSON.stringify(m));
 }
