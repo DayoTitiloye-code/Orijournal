@@ -174,3 +174,5 @@ function hideForm (e) {
     document.querySelector('#write-post').style.display = "none"
 }
 
+
+
