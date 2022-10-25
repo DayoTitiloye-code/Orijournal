@@ -84,6 +84,7 @@ function display() {
         for(let i = 0; i < data.posts.length; i++){
             let div = document.createElement('div')
             div.id = data.posts[i].id
+            div.className = 'post-block'
             let title = document.createElement('h3')
             title.textContent = data.posts[i].title
             let p = document.createElement('p')
@@ -200,6 +201,7 @@ function sendPost() {
         method: "POST",
         body: JSON.stringify(
             {
+                id: 0,
                 title: outputTitle.value,
                 text: outputPost.value, 
                 comments: [],
