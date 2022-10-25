@@ -17,6 +17,7 @@ gifButton.addEventListener('click', (e) =>{
     e.preventDefault()
     getGif()
 })
+form.addEventListener('submit', sendPost)
 
 function getGif(){
 
@@ -87,12 +88,17 @@ function display() {
 function sendPost(e) {
     e.preventDefault()
     console.log("Pressed") 
+    const outputTitle = document.querySelector("#titleinput");
+    const outputPost = document.querySelector("#post");
+    const gif = document.querySelector("#result");
+    console.log(gif)
+
     fetch("http://localhost:3000/community", {
         method: "POST",
         body: JSON.stringify(
             {
-                title: "Title",
-                text: "I finally did it", 
+                title: outputTitle.value,
+                text: outputPost.value, 
                 comments: [],
                 reactions: {
                     laugh: 0,
@@ -109,6 +115,10 @@ function sendPost(e) {
     .then(response => response.json())
     .then(json => console.log(json))
     .catch(err => console.warn);
+
+    outputTitle.value = ""
+    outputPost.value = ""
+    hideForm(e)
 }
 
 function sendComment (e) {
@@ -141,14 +151,3 @@ function hideForm (e) {
     document.querySelector('#write-post').style.display = "none"
 }
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const outputTitle = document.querySelector("#titleinput");
-
-    const outputPost = document.querySelector("#inputPost");
-
-
-    
-})
-    

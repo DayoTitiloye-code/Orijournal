@@ -16,3 +16,5 @@
 - Created input elements in posts to allow users to write comments
 - Added endpoint to allow comments to be posted to the server
 - Converted comments to JSON and pushed them to the relevant post
+- Captured user input and POST it to server
+- After data is sent the form is hidden
