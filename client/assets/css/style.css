@@ -37,6 +37,7 @@ main {
 .masthead-brand {
     float: left;
     color: white;
+    padding: 0 16px 8px !important;
 }
 
 .nav-masthead {
