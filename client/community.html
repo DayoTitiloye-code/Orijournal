@@ -29,21 +29,24 @@
         <form id="post-form">
             <section id="title">
                 <label for="titleinput">Give your post a title:</label><br>
-                <input type="text" name="titleinput" id="titleinput">
+                <input type="text" name="titleinput" id="titleinput" placeholder="Title of post">
             </section>
+
             <section id="post-gif">
+                <label for="gifinput">Give your post a gif:</label><br>
                 <input type="text" id="search" placeholder="Search for GIF">
-                <button id="btn-gif">Get gif</button>
-                <button id="btn-remove">Change gif</button>
-                <div id="results"> </div>
-                <div id="result"> </div>
+                <div id="gifbtns">
+                    <button id="btn-gif">Get gif</button>
+                    <button id="btn-remove">Change gif</button>
+                </div>
             </section>
+            <div id="results"> </div>
+            <div id="result"> </div>
             <section id="postinput">
                 <label for="post">Tell us more!:</label><br>
-                <textarea name="post" id="post" placeholder="500 characters max." rows="10" cols="40"
-                    maxlength="500"></textarea>
+                <textarea name="post" id="post" placeholder="500 characters max." maxlength="500"></textarea>
             </section>
-            <input type="submit" value="Send">
+            <input type="submit" value="Post" id="sendInForm">
         </form>
 
     </div>
