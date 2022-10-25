@@ -21,7 +21,13 @@
     color: black;
 }
 
+.masthead {
+    position: absolute !important;
+}
 
+main.cover {
+    justify-content: center !important;
+}
 
 img {
     border-radius: 30px;

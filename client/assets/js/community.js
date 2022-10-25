@@ -1,7 +1,7 @@
 const body = document.querySelector('body');
 const postButton = document.querySelector('#post-button');
 const form = document.getElementById("post-form");
-const cover = document.querySelector('.cover-container')
+const cover = document.querySelector('main.inner')
 postButton.addEventListener('click', showForm);
 
 const exitButton = document.querySelector('#exit-button')
