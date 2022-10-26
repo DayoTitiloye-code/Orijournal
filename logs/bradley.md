@@ -31,3 +31,4 @@
 - Added IDs for posts in the JSON
 - Assigned class names to post divs for styling
 - Formatted date and time to appear in easy to understand format
+- Reaction count increments without page having to refresh
