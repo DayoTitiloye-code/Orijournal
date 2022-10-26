@@ -9,7 +9,6 @@ app.use(express.urlencoded({extended: true}));
 
 let fs = require('fs');
 
-
 function getData() {
     let fileName = 'data.json';
     let data = JSON.parse(fs.readFileSync(fileName).toString());
