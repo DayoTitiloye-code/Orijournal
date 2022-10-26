@@ -143,6 +143,7 @@ function display() {
                     laughCount.textContent = increment 
                     console.log("Laugh")
                     addReaction(e, laughEmoji, "laugh", true)
+                    laughEmoji.className = "clicked-emoji"
                     laughClicked = true
                 }
                 else if (laughClicked && !shockClicked && !angryClicked){
@@ -151,6 +152,7 @@ function display() {
                     laughCount.textContent = decrement
                     console.log("Already Chosen")
                     addReaction(e, laughEmoji, "laugh", false)
+                    laughEmoji.classList.remove("clicked-emoji")
                     laughClicked = false
                 }
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
@@ -167,6 +169,7 @@ function display() {
                     shockCount.textContent = increment 
                     console.log("Shock")
                     addReaction(e, laughEmoji, "shock", true)
+                    shockEmoji.className = "clicked-emoji"
                     shockClicked = true
                 }
                 else if (!laughClicked && shockClicked && !angryClicked){
@@ -174,7 +177,8 @@ function display() {
                     decrement -=1
                     shockCount.textContent = decrement
                     console.log("Already Chosen")
-                    addReaction(e, shockEmoji, "shock", false) 
+                    addReaction(e, shockEmoji, "shock", false)
+                    shockEmoji.className = ""
                     shockClicked = false
                 }
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
@@ -191,6 +195,7 @@ function display() {
                     angryCount.textContent = increment 
                     console.log("Angry")
                     addReaction(e, angryEmoji, "angry", true)
+                    angryEmoji.className = "clicked-emoji"
                     angryClicked = true
                 }
                 else if (!laughClicked && !shockClicked && angryClicked){
@@ -199,6 +204,7 @@ function display() {
                     angryCount.textContent = decrement
                     console.log("Already Chosen")
                     addReaction(e, angryEmoji, "laugh", false)
+                    angryEmoji.className = ""
                     angryClicked = false
                 }
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
