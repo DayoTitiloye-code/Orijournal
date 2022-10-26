@@ -87,14 +87,20 @@ function display() {
             div.id = data.posts[i].id
             div.className = 'post-block'
             let title = document.createElement('h3')
+            title.id = "title"
             title.textContent = data.posts[i].title
             let p = document.createElement('p')
             p.textContent = data.posts[i].text
             let gif = document.createElement('img')
             gif.src = data.posts[i].gif
+            let interact1 = document.createElement('div')
+            interact1.id = "interact"
+            let interact2 = document.createElement('div')
+            interact2.id = "interact2"
             let form = document.createElement('form')
             let commentInput = document.createElement('input')
             commentInput.id = "comment"
+            commentInput.placeholder = "Add a comment..."
             let send = document.createElement('input')
             send.type = 'submit'
             send.value = "Comment"
@@ -226,7 +232,6 @@ function display() {
             button.textContent = "View Comments"
 
             let divComments = document.createElement('div')
-            divComments.style.border = "thick solid #0000FF"
             divComments.style.display = 'none'
             button.addEventListener('click', toggleComments)
             function toggleComments () {
@@ -239,27 +244,27 @@ function display() {
                 }
             }
 
-            let mostRecent = document.createElement('button');
-            mostRecent.id = '#mostrecent';
-            mostRecent.textContent = "Sort by Most Recent";
+            // let mostRecent = document.createElement('button');
+            // mostRecent.id = '#mostrecent';
+            // mostRecent.textContent = "Sort by Most Recent";
 
-            function showNewest(array) {
-                for(let j = 0; j < array.length; j++){
-                    let comment = document.createElement('p')
-                    console.log(array.text)
-                    comment.textContent = array.text
-                    divComments.append(comment)
-                }}
+            // function showNewest(array) {
+            //     for(let j = 0; j < array.length; j++){
+            //         let comment = document.createElement('p')
+            //         console.log(array.text)
+            //         comment.textContent = array.text
+            //         divComments.append(comment)
+            //     }}
 
             
-            mostRecent.addEventListener('click', showNewest);
-            let newest = false;
-            let arr = data.posts[i].comments;
-            if(!newest) arr = arr.reverse()
+            // mostRecent.addEventListener('click', showNewest);
+            // let newest = false;
+            // let arr = data.posts[i].comments;
+            // if(!newest) arr = arr.reverse()
             
-            divComments.append(mostRecent)
-            console.log(arr)
-            showNewest(arr)
+            // // divComments.append(mostRecent)
+            // console.log(arr)
+            // // showNewest(arr)
 
             let commentNumber = document.createElement('h6');
             commentNumber.id = '#commentnumber'
@@ -278,8 +283,8 @@ function display() {
                 let commentTime = document.createElement('p')
                 commentText.textContent = data.posts[i].comments[j].text
                 commentTime.textContent = data.posts[i].comments[j].dateTime
-                comment.append(commentText)
                 comment.append(commentTime)
+                comment.append(commentText)
                 divComments.append(comment)
             }
 
@@ -287,14 +292,16 @@ function display() {
             form.append(commentInput)
             form.append(send)
             form.addEventListener('submit', e =>  sendComment(e, commentInput))
+            interact1.append(form)
+            interact1.append(emojiDiv)
+            interact2.append(button)
+            interact2.append(commentNumber)
             div.append(postDate)
             div.append(title)
             div.append(p)
             div.append(gif)
-            div.append(form)
-            div.append(emojiDiv)
-            div.append(button)
-            div.append(commentNumber)
+            div.append(interact1)
+            div.append(interact2)
             div.append(divComments)
             cover.append(div)
         }

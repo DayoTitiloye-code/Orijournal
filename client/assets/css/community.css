@@ -72,7 +72,8 @@ main.cover {
     border-radius: 0.375rem;
     width: 50%;
     backdrop-filter: blur(10px);
-    z-index: -1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
 }
 
 p {
@@ -88,38 +89,54 @@ img {
     justify-content: center;
 }
 
-.postblock h3 {
+ #title {
     
-    text-align: center;
     font-family: 'arial';
-    color: #C06014;
+    color: white;
+    border-bottom: white 1px solid;
+}
+
+#interact {
+    height: 50px;
+    margin-top: 50px;
 }
 
 form {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: flex-end;
+    float: left;
+    
     
 }
 
 #emoji-div {
-    
     display: flex;
-    justify-content: center;
-    
+    justify-content: flex-end;
+
 }
 
 #emoji-div a {
-    font-size: 20px;
+    font-size: 30px;
+    text-decoration: none;
 }
 
+a {
+    transition: 0.5s;
+    border-radius: 10rem;
+}
 
-h6 {
-    
-    display: flex;
-    right: 1px;
-    justify-content: flex-end;
+a:hover {
+    text-decoration: none;
+    background-color: lightgoldenrodyellow;
+    transition: 0.5s;
+    border-radius: 10rem;
+    cursor: pointer;
+}
+
+.clicked-emoji {
+    background-color: lightskyblue;
+}
+
+#interact2 {
+    height: 30px;
 }
 
 input {
@@ -127,9 +144,22 @@ input {
     background-color: white;
     border-radius: 00.375rem;
     font-family: 'Manrope' !important;
-    
-    
+    display: inline-block;
+    transition: 0.5s;
 }
+
+input:hover {
+    background-color: #C06014;
+    transition: 0.5s;
+    color: white;
+}
+
+h6 {
+    float: right;
+    color: lightgray;
+}
+
+
 
 input#comment {
     width: 200px;
@@ -138,20 +168,29 @@ input#comment {
     border-bottom: white 2px solid;
     border-radius: 00rem;
     outline: 0;
+    color: white;
     
     
 }
 
+::placeholder {
+    color: lightgrey;
+}
+
 button {
-    display: flex;
-    justify-content: flex-start;
+    float: left;
     background-color: #C06014;
     border-radius: 0.375rem !important;
     border: none;
     padding: 5px 10px;
     color: white;
     font-family: 'Manrope' !important;
-    
+    transition: 0.5s;
+}
+
+button:hover {
+    background-color: #536162;
+    transition: 0.5s;
 }
 
 
@@ -220,8 +259,7 @@ button#exit-button:hover {
     font-size: 30px;
     transition: 0.5s;
     position: fixed;
-    
-    
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 #post-button:hover {
@@ -230,7 +268,13 @@ button#exit-button:hover {
 
 }
 
+#write-post {
+    z-index: 1;
+    background-color:#536162;
+}
+
 #post-form {
+    z-index: -1;
     display: flex;
     flex-direction: column;
     align-items: center;
