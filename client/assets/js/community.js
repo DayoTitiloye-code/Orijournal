@@ -182,15 +182,19 @@ function display() {
 }
 
 function getNow () {
-    let now = new Date();
-    console.log(now)
-    console.log(now.toLocaleString)
-    console.log(`${now.getDate()}/${now.getMonth()+1}`)
+    let date = new Date();
+    let year = date.getFullYear()
+    let month = date.getMonth() + 1
+    let day = date.getDate()
+    let hour = date.getHours()
+    let minute = date.getMinutes()
+ 
+    return `${hour}:${minute} ${day}/${month}/${year}`
 }
 
 getNow()
 display()
- 
+
 function sendPost() {
     console.log("Pressed") 
     const outputTitle = document.querySelector("#titleinput");
@@ -211,7 +215,7 @@ function sendPost() {
                     angry: 0
                 },
                 gif: gif ? gif.src : "",
-                dateTime: new Date
+                dateTime: getNow()
             }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -236,7 +240,7 @@ function sendComment (e, comment) {
             {
                 post: comment.parentNode.parentNode.id,
                 text: comment.value, 
-                dateTime: new Date()
+                dateTime: getNow()
             }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -256,9 +260,10 @@ function sendComment (e, comment) {
 //     }
 // )}
 
-function addReaction (e, emoji, reaction) {
-    e.preventDefault()    
+function addReaction (e, emoji, reaction) { 
     console.log(reaction + " clicked")
+
+    console.log(document.cookie)
     fetch("/community/react", {
         method: "PUT",
         body: JSON.stringify({
@@ -272,6 +277,7 @@ function addReaction (e, emoji, reaction) {
     .then(response => response.json())
     .then(json => console.log(json))
     .catch(err => console.warn);
+    document.location.reload();
 }
 
 function showForm (e) {
