@@ -237,6 +237,7 @@ function display() {
             function toggleComments () {
                 if(divComments.style.display === 'none'){
                     divComments.style.display = 'block'
+                    divComments.style.marginTop = '10px'
                     button.textContent = "Hide Comments"
                 } else{
                     divComments.style.display = 'none'
