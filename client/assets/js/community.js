@@ -103,20 +103,35 @@ function display() {
             let laughEmoji = document.createElement('a')
             let laughCount = document.createElement('p')
             laughEmoji.innerHTML = '&#129315;'
-            laughCount = data.posts[i].reactions.laugh
+            laughCount.textContent =  data.posts[i].reactions.laugh
             let shockEmoji = document.createElement('a')
             let shockCount = document.createElement('p')
             shockEmoji.innerHTML = '&#128558;'
-            shockCount = data.posts[i].reactions.shock
+            shockCount.textContent = data.posts[i].reactions.shock
             let angryEmoji = document.createElement('a')
             let angryCount = document.createElement('p') 
             angryEmoji.innerHTML = '&#128544;'   
-            angryCount = data.posts[i].reactions.angry
+            angryCount.textContent = data.posts[i].reactions.angry
+           
             laughEmoji.addEventListener('click', e => {
+                let increment = parseInt(laughCount.textContent);
+                increment +=1
+                laughCount.textContent = increment 
                 addReaction(e, laughEmoji, "laugh")},{once : true})
-            shockEmoji.addEventListener('click', e => {addReaction(e, shockEmoji, "shock")},{once : true}) 
+            shockEmoji.addEventListener('click', e => {
+                let increment = parseInt(shockCount.textContent);
+                increment +=1
+                shockCount.textContent = increment
+                addReaction(e, shockEmoji, "shock")},{once : true}) 
             angryEmoji.addEventListener('click', e => {
+                let increment = parseInt(angryCount.textContent);
+                increment +=1
+                angryCount.textContent = increment
                 addReaction(e, angryEmoji, "angry")},{once : true})  
+            emojiDiv.addEventListener('click', e => {
+                console.log("Hey")
+                e.stopImmediatePropagation()
+            })
             emojiDiv.append(laughEmoji)
             emojiDiv.append(laughCount)
             emojiDiv.append(shockEmoji)
@@ -157,9 +172,14 @@ function display() {
             postDate.textContent = `${data.posts[i].dateTime}`
 
             for(let j = 0; j < data.posts[i].comments.length; j++){
-                let comment = document.createElement('p')
+                let comment = document.createElement('div')
+                let commentText = document.createElement('p')
+                let commentTime = document.createElement('p')
                 console.log(data.posts[i].comments[j].text)
-                comment.textContent = data.posts[i].comments[j].text
+                commentText.textContent = data.posts[i].comments[j].text
+                commentTime.textContent = data.posts[i].comments[j].dateTime
+                comment.append(commentText)
+                comment.append(commentTime)
                 divComments.append(comment)
             }
 
@@ -263,7 +283,6 @@ function sendComment (e, comment) {
 function addReaction (e, emoji, reaction) { 
     console.log(reaction + " clicked")
 
-    console.log(document.cookie)
     fetch("/community/react", {
         method: "PUT",
         body: JSON.stringify({
@@ -277,7 +296,7 @@ function addReaction (e, emoji, reaction) {
     .then(response => response.json())
     .then(json => console.log(json))
     .catch(err => console.warn);
-    document.location.reload();
+    // document.location.reload();
 }
 
 function showForm (e) {
