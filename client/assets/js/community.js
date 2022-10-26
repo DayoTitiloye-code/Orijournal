@@ -9,6 +9,7 @@ const sendButton = document.querySelector('#send-button')
 const gifButton = document.querySelector('#btn-gif')
 let apiKey = `NLls5Old8idRIHlgjN8gBEsyCHM6MlSH`
 let search = document.querySelector('#search')
+
 postButton.addEventListener('click', showForm)
 exitButton.addEventListener('click', hideForm)
 let gifChange = document.querySelector('#btn-remove')
@@ -96,7 +97,7 @@ function display() {
             commentInput.id = "comment"
             let send = document.createElement('input')
             send.type = 'submit'
-            send.value = "Send"
+            send.value = "Comment"
 
             let emojiDiv = document.createElement('div')
             emojiDiv.id = "emoji-div"
@@ -140,36 +141,46 @@ function display() {
                     button.textContent = "View Comments"
                 }
             }
-            // send.addEventListener('click', addComment)
-            // function addComment (e){
-            //     e.preventDefault()
-            //     let postComment = document.createElement('p')
-            //     postComment.append(comment.value)
-            //     divComments.append(postComment)
-            //     comment.value = ''
-            // }
+
+            let mostRecent = document.createElement('button');
+            mostRecent.id = '#mostrecent';
+            mostRecent.textContent = "Sort by Most Recent";
+
+            function showNewest(array) {
+                for(let j = 0; j < array.length; j++){
+                    let comment = document.createElement('p')
+                    console.log(array.text)
+                    comment.textContent = array.text
+                    divComments.append(comment)
+                }}
+
+            
+            mostRecent.addEventListener('click', showNewest);
+            let newest = false;
+            let arr = data.posts[i].comments;
+            if(!newest) arr = arr.reverse()
+            
+            divComments.append(mostRecent)
+            console.log(arr)
+            showNewest(arr)
+
             let commentNumber = document.createElement('h6');
             commentNumber.id = '#commentnumber'
             commentNumber.textContent = `${data.posts[i].comments.length} comments`
 
-            let postDate = document.createElement('h5');
+            let postDate = document.createElement('p');
             postDate.id = '#postdate'
             postDate.textContent = `${data.posts[i].dateTime}`
 
-            for(let j = 0; j < data.posts[i].comments.length; j++){
-                let comment = document.createElement('p')
-                console.log(data.posts[i].comments[j].text)
-                comment.textContent = data.posts[i].comments[j].text
-                divComments.append(comment)
-            }
+            
 
             form.append(commentInput)
             form.append(send)
             form.addEventListener('submit', e =>  sendComment(e, commentInput))
+            div.append(postDate)
             div.append(title)
             div.append(p)
             div.append(gif)
-            div.append(postDate)
             div.append(form)
             div.append(emojiDiv)
             div.append(button)
