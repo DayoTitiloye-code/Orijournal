@@ -9,7 +9,6 @@ app.use(express.urlencoded({extended: true}));
 
 let fs = require('fs');
 
-
 function getData() {
     let fileName = 'data.json';
     let data = JSON.parse(fs.readFileSync(fileName).toString());
@@ -25,7 +24,6 @@ function saveData (data) {
 }
 
 function addComment (data) {
-  console.log(data)
   let fileName = 'data.json';
   let m = JSON.parse(fs.readFileSync(fileName).toString());
   let index = m.posts.findIndex(obj => obj.id == data.post)
@@ -33,13 +31,30 @@ function addComment (data) {
   fs.writeFileSync(fileName, JSON.stringify(m));
 }
 
-function addReaction (data) {
-  console.log(data.emoji)
+// function addReaction (data) {
+//   let fileName = 'data.json';
+//   let m = JSON.parse(fs.readFileSync(fileName).toString());
+//   let index = m.posts.findIndex(obj => obj.id == data.id)
+//   m.posts[index].reactions[data.emoji] ++
+//   fs.writeFileSync(fileName, JSON.stringify(m));
+// }
+
+// function removeReaction (data) {
+//   let fileName = 'data.json';
+//   let m = JSON.parse(fs.readFileSync(fileName).toString());
+//   let index = m.posts.findIndex(obj => obj.id == data.id)
+//   fs.writeFileSync(fileName, JSON.stringify(m));
+// }
+
+function reaction (data){
   let fileName = 'data.json';
   let m = JSON.parse(fs.readFileSync(fileName).toString());
   let index = m.posts.findIndex(obj => obj.id == data.id)
-  m.posts[index].reactions[data.emoji] ++
+  if(data.type) m.posts[index].reactions[data.emoji] ++
+  else m.posts[index].reactions[data.emoji] --
   fs.writeFileSync(fileName, JSON.stringify(m));
+  
+
 }
 
 app.use(express.static(path.join(__dirname, '../client/assets')))
@@ -60,8 +75,13 @@ app.post('/community/comment', async (req, res) => {
   addComment(req.body)
 })
 
+// app.put('/community/changereact', async (req, res) => {
+//   reaction(req.body, false)
+//   console.log("No")
+// })
+
 app.put('/community/react', async (req, res) => {
-  addReaction(req.body)
+  reaction(req.body)
 })
 
 
