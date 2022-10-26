@@ -88,13 +88,19 @@ function display() {
             div.className = 'post-block'
             let title = document.createElement('h3')
             title.textContent = data.posts[i].title
+            title.id = "title"
             let p = document.createElement('p')
             p.textContent = data.posts[i].text
             let gif = document.createElement('img')
             gif.src = data.posts[i].gif
+            let interact1 = document.createElement('div')
+            interact1.id = "interact"
+            let interact2 = document.createElement('div')
+            interact2.id = "interact2"
             let form = document.createElement('form')
             let commentInput = document.createElement('input')
             commentInput.id = "comment"
+            commentInput.placeholder = "Add a comment..."
             let send = document.createElement('input')
             send.type = 'submit'
             send.value = "Comment"
@@ -157,11 +163,6 @@ function display() {
                     laughClicked = false
                 }
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
-                // shockEmoji.style.display = "none"
-                // shockCount.style.display = "none"
-                // angryEmoji.style.display = "none"
-                // angryCount.style.display = "none"
-                // createButton(e, laughEmoji, laughCount, "laugh")
             })
             shockEmoji.addEventListener('click', e => {
                 if (!laughClicked && !shockClicked && !angryClicked){
@@ -183,11 +184,6 @@ function display() {
                     shockClicked = false
                 }
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
-                // laughEmoji.style.display = "none"
-                // laughCount.style.display = "none"
-                // angryEmoji.style.display = "none"
-                // angryCount.style.display = "none"
-                // createButton(e, shockEmoji, shockCount, "shock")
             }) 
             angryEmoji.addEventListener('click', e => {
                 if (!laughClicked && !shockClicked && !angryClicked){
@@ -209,11 +205,6 @@ function display() {
                     angryClicked = false
                 }
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
-                // shockEmoji.style.display = "none"
-                // shockCount.style.display = "none"
-                // laughEmoji.style.display = "none"
-                // laughCount.style.display = "none"
-                // createButton(e, angryEmoji, angryCount, "angry")
             })  
             emojiDiv.append(laughEmoji)
             emojiDiv.append(laughCount)
@@ -226,12 +217,12 @@ function display() {
             button.textContent = "View Comments"
 
             let divComments = document.createElement('div')
-            divComments.style.border = "thick solid #0000FF"
             divComments.style.display = 'none'
             button.addEventListener('click', toggleComments)
             function toggleComments () {
                 if(divComments.style.display === 'none'){
                     divComments.style.display = 'block'
+                    divComments.style.marginTop = '10px'
                     button.textContent = "Hide Comments"
                 } else{
                     divComments.style.display = 'none'
@@ -252,14 +243,14 @@ function display() {
                 }}
 
             
-            mostRecent.addEventListener('click', showNewest);
-            let newest = false;
-            let arr = data.posts[i].comments;
-            if(!newest) arr = arr.reverse()
+            // mostRecent.addEventListener('click', showNewest);
+            // let newest = false;
+            // let arr = data.posts[i].comments;
+            // if(!newest) arr = arr.reverse()
             
-            divComments.append(mostRecent)
-            console.log(arr)
-            showNewest(arr)
+            // divComments.append(mostRecent)
+            // console.log(arr)
+            // showNewest(arr)
 
             let commentNumber = document.createElement('h6');
             commentNumber.id = '#commentnumber'
@@ -278,8 +269,8 @@ function display() {
                 let commentTime = document.createElement('p')
                 commentText.textContent = data.posts[i].comments[j].text
                 commentTime.textContent = data.posts[i].comments[j].dateTime
-                comment.append(commentText)
                 comment.append(commentTime)
+                comment.append(commentText)
                 divComments.append(comment)
             }
 
@@ -287,14 +278,16 @@ function display() {
             form.append(commentInput)
             form.append(send)
             form.addEventListener('submit', e =>  sendComment(e, commentInput))
+            interact1.append(form)
+            interact1.append(emojiDiv)
+            interact2.append(button)
+            interact2.append(commentNumber)
             div.append(postDate)
             div.append(title)
             div.append(p)
             div.append(gif)
-            div.append(form)
-            div.append(emojiDiv)
-            div.append(button)
-            div.append(commentNumber)
+            div.append(interact1)
+            div.append(interact2)
             div.append(divComments)
             cover.append(div)
         }
@@ -359,7 +352,7 @@ function sendComment (e, comment) {
         method: "POST",
         body: JSON.stringify(
             {
-                post: comment.parentNode.parentNode.id,
+                post: comment.parentNode.parentNode.parentNode.id,
                 text: comment.value, 
                 dateTime: getNow()
             }),
@@ -387,7 +380,7 @@ function addReaction (e, emoji, reaction, isAdd) {
     fetch("/community/react", {
         method: "PUT",
         body: JSON.stringify({
-            id: emoji.parentNode.parentNode.id,
+            id: emoji.parentNode.parentNode.parentNode.id,
             emoji: reaction,
             type: isAdd
         }),
