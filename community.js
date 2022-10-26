@@ -143,13 +143,14 @@ function display() {
             let shockClicked = false
             let angryClicked = false
             
-            laughEmoji.addEventListener('click', e => {
+            laughEmoji.addEventListener('click', async e => {
+                console.log("Client laugh emoji")
                 if (!laughClicked && !shockClicked && !angryClicked){
                     let increment = parseInt(laughCount.textContent);
                     increment +=1
                     laughCount.textContent = increment 
                     console.log("Laugh")
-                    addReaction(e, laughEmoji, "laugh", true)
+                    await addReaction(e, laughEmoji, "laugh", true)
                     laughEmoji.className = "clicked-emoji"
                     laughClicked = true
                 }
@@ -158,24 +159,20 @@ function display() {
                     decrement -=1
                     laughCount.textContent = decrement
                     console.log("Already Chosen")
-                    addReaction(e, laughEmoji, "laugh", false)
+                    await addReaction(e, laughEmoji, "laugh", false)
                     laughEmoji.classList.remove("clicked-emoji")
                     laughClicked = false
                 }
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
-                // shockEmoji.style.display = "none"
-                // shockCount.style.display = "none"
-                // angryEmoji.style.display = "none"
-                // angryCount.style.display = "none"
-                // createButton(e, laughEmoji, laughCount, "laugh")
             })
-            shockEmoji.addEventListener('click', e => {
+            shockEmoji.addEventListener('click', async e => {
+                console.log("Client shock emoji")
                 if (!laughClicked && !shockClicked && !angryClicked){
                     let increment = parseInt(shockCount.textContent);
                     increment +=1
                     shockCount.textContent = increment 
                     console.log("Shock")
-                    addReaction(e, laughEmoji, "shock", true)
+                    await addReaction(e, laughEmoji, "shock", true)
                     shockEmoji.className = "clicked-emoji"
                     shockClicked = true
                 }
@@ -184,24 +181,21 @@ function display() {
                     decrement -=1
                     shockCount.textContent = decrement
                     console.log("Already Chosen")
-                    addReaction(e, shockEmoji, "shock", false)
+                    await addReaction(e, shockEmoji, "shock", false)
                     shockEmoji.className = ""
                     shockClicked = false
                 }
+                else{console.log("Irregular occurence")}
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
-                // laughEmoji.style.display = "none"
-                // laughCount.style.display = "none"
-                // angryEmoji.style.display = "none"
-                // angryCount.style.display = "none"
-                // createButton(e, shockEmoji, shockCount, "shock")
             }) 
-            angryEmoji.addEventListener('click', e => {
+            angryEmoji.addEventListener('click', async e => {
+                console.log("Client angry emoji")
                 if (!laughClicked && !shockClicked && !angryClicked){
                     let increment = parseInt(angryCount.textContent);
                     increment +=1
                     angryCount.textContent = increment 
                     console.log("Angry")
-                    addReaction(e, angryEmoji, "angry", true)
+                    await addReaction(e, angryEmoji, "angry", true)
                     angryEmoji.className = "clicked-emoji"
                     angryClicked = true
                 }
@@ -210,16 +204,12 @@ function display() {
                     decrement -=1
                     angryCount.textContent = decrement
                     console.log("Already Chosen")
-                    addReaction(e, angryEmoji, "laugh", false)
+                    await addReaction(e, angryEmoji, "angry", false)
                     angryEmoji.className = ""
                     angryClicked = false
                 }
+                else{console.log("Irregular occurence")}
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
-                // shockEmoji.style.display = "none"
-                // shockCount.style.display = "none"
-                // laughEmoji.style.display = "none"
-                // laughCount.style.display = "none"
-                // createButton(e, angryEmoji, angryCount, "angry")
             })  
             emojiDiv.append(laughEmoji)
             emojiDiv.append(laughCount)
@@ -244,6 +234,27 @@ function display() {
                     button.textContent = "View Comments"
                 }
             }
+
+            let mostRecent = document.createElement('button');
+            mostRecent.id = '#mostrecent';
+            mostRecent.textContent = "Sort by Most Recent";
+
+            function showNewest(array) {
+                for(let j = 0; j < array.length; j++){
+                    let comment = document.createElement('p')
+                    console.log(array.text)
+                    comment.textContent = array.text
+                    divComments.append(comment)
+                }}
+
+            
+            mostRecent.addEventListener('click', showNewest);
+            let newest = false;
+            let arr = data.posts[i].comments;
+            if(!newest) arr = arr.reverse()
+            
+            divComments.append(mostRecent)
+
 
             let commentNumber = document.createElement('h6');
             commentNumber.id = '#commentnumber'
@@ -368,7 +379,7 @@ function sendComment (e, comment) {
 // )}
 
 function addReaction (e, emoji, reaction, isAdd) { 
-    console.log(reaction + " clicked")
+    console.log("Client reacted")
 
     fetch("/community/react", {
         method: "PUT",

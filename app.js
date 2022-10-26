@@ -47,6 +47,7 @@ function addComment (data) {
 // }
 
 function reaction (data){
+  console.log("Server")
   let fileName = 'data.json';
   let m = JSON.parse(fs.readFileSync(fileName).toString());
   let index = m.posts.findIndex(obj => obj.id == data.id)
@@ -57,19 +58,28 @@ function reaction (data){
 
 }
 
-app.use(express.static(path.join(__dirname, '../client/assets')))
+// app.use(express.static(path.join(__dirname, '../client/assets')))
 
 app.get('/getData', (req, res) => {
     res.send(getData())
   })
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../client/index.html')))
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')))
 
-app.get('/community', async (req, res) => res.sendFile(path.join(__dirname, '../client/community.html')))
+app.get('/community', async (req, res) => res.sendFile(path.join(__dirname, '/community.html')))
 
 app.post('/community', async (req, res) => {
   saveData(req.body)
 })
+
+app.get('/style.css', async (req, res) => res.sendFile(path.join(__dirname, '/style.css')))
+
+app.get('/community.css', async (req, res) => res.sendFile(path.join(__dirname, '/community.css')))
+
+app.get('/community.js', async (req, res) => res.sendFile(path.join(__dirname, '/community.js')))
+
+app.get('/favicon', async (req, res) => res.sendFile(path.join(__dirname, '/chat-quote.svg')))
+
 
 app.post('/community/comment', async (req, res) => {
   addComment(req.body)
