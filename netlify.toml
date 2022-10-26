@@ -1,0 +1,7 @@
+[build]
+    functions="server"
+[[redirects]]
+    from= "/app/*"
+    to="/.netlify/server/app/:splat"
+    status=200    
+force=true 

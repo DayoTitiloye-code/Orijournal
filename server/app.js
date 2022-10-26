@@ -3,6 +3,8 @@ const app = express();
 const path = require('path')
 const cors = require('cors');
 const port = process.env.PORT || 3000;
+const serverless = require('serverless-http')
+const router = express.Router()
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
@@ -41,27 +43,27 @@ function addReaction (data) {
   fs.writeFileSync(fileName, JSON.stringify(m));
 }
 
-app.use(express.static(path.join(__dirname, '../client/assets')))
+router.use(express.static(path.join(__dirname, '../client/assets')))
 
-app.get('/getData', (req, res) => {
+router.get('/getData', (req, res) => {
     res.send(getData())
   })
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../client/index.html')))
+router.get('/', (req, res) => res.sendFile(path.join(__dirname, '../client/index.html')))
 
-app.get('/community', async (req, res) => res.sendFile(path.join(__dirname, '../client/community.html')))
+router.get('/community', async (req, res) => res.sendFile(path.join(__dirname, '../client/community.html')))
 
-app.post('/community', async (req, res) => {
+router.post('/community', async (req, res) => {
   saveData(req.body)
 })
 
-app.post('/community/comment', async (req, res) => {
+router.post('/community/comment', async (req, res) => {
   addComment(req.body)
 })
 
-app.put('/community/react', async (req, res) => {
+router.put('/community/react', async (req, res) => {
   addReaction(req.body)
 })
 
-
 app.listen(port, () => console.log(`Now running on http://localhost:${port}`))
+module.exports.handler = serverless(app)
