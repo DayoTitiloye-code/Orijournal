@@ -32,3 +32,5 @@
 - Assigned class names to post divs for styling
 - Formatted date and time to appear in easy to understand format
 - Reaction count increments without page having to refresh
+- Displayed date and time of comments
+- Used boolean logic to ensure only one emoji reaction is used at once
