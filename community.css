@@ -76,8 +76,12 @@ main.cover {
     
 }
 
+#postdate {
+    color: lightgray !important;
+}
+
 p {
-    color: lightgray;
+    color: white;
 }
 
 img {
@@ -113,17 +117,15 @@ form {
 
 }
 
+
 #emoji-div a {
+    transition: 0.5s;
+    border-radius: 10rem;
     font-size: 30px;
     text-decoration: none;
 }
 
-a {
-    transition: 0.5s;
-    border-radius: 10rem;
-}
-
-a:hover {
+#emoji-div a:hover {
     text-decoration: none;
     background-color: lightgoldenrodyellow;
     transition: 0.5s;

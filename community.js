@@ -245,34 +245,12 @@ function display() {
                 }
             }
 
-            // let mostRecent = document.createElement('button');
-            // mostRecent.id = '#mostrecent';
-            // mostRecent.textContent = "Sort by Most Recent";
-
-            // function showNewest(array) {
-            //     for(let j = 0; j < array.length; j++){
-            //         let comment = document.createElement('p')
-            //         console.log(array.text)
-            //         comment.textContent = array.text
-            //         divComments.append(comment)
-            //     }}
-
-            
-            // mostRecent.addEventListener('click', showNewest);
-            // let newest = false;
-            // let arr = data.posts[i].comments;
-            // if(!newest) arr = arr.reverse()
-            
-            // // divComments.append(mostRecent)
-            // console.log(arr)
-            // // showNewest(arr)
-
             let commentNumber = document.createElement('h6');
             commentNumber.id = '#commentnumber'
             commentNumber.textContent = `${data.posts[i].comments.length} comments`
 
             let postDate = document.createElement('p');
-            postDate.id = '#postdate'
+            postDate.id = 'postdate'
             postDate.textContent = `${data.posts[i].dateTime}`
 
 
