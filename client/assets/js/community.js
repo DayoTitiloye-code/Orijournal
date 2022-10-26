@@ -112,26 +112,102 @@ function display() {
             let angryCount = document.createElement('p') 
             angryEmoji.innerHTML = '&#128544;'   
             angryCount.textContent = data.posts[i].reactions.angry
-           
+            // function createButton (e, emoji, emojiCount, reaction) {
+            //     let reset = document.createElement('button')
+            //     reset.textContent = 'Change Reaction'
+            //     reset.id = reaction
+            //     reset.addEventListener('click', e => {
+            //         laughEmoji.style.display = "block"
+            //         laughCount.style.display = "block"
+            //         shockEmoji.style.display = "block"
+            //         shockCount.style.display = "block"
+            //         angryEmoji.style.display = "block"
+            //         angryCount.style.display = "block"
+            //         addReaction(e, emoji, reaction, false)
+            //         let decrement = parseInt(emojiCount.textContent);
+            //         decrement -=1
+            //         emojiCount.textContent = decrement 
+            //         document.querySelector('#emoji-div button').remove()
+            //     })
+            //     emojiDiv.append(reset)
+                
+            // }
+            let laughClicked = false
+            let shockClicked = false
+            let angryClicked = false
+            
             laughEmoji.addEventListener('click', e => {
-                let increment = parseInt(laughCount.textContent);
-                increment +=1
-                laughCount.textContent = increment 
-                addReaction(e, laughEmoji, "laugh")},{once : true})
-            shockEmoji.addEventListener('click', e => {
-                let increment = parseInt(shockCount.textContent);
-                increment +=1
-                shockCount.textContent = increment
-                addReaction(e, shockEmoji, "shock")},{once : true}) 
-            angryEmoji.addEventListener('click', e => {
-                let increment = parseInt(angryCount.textContent);
-                increment +=1
-                angryCount.textContent = increment
-                addReaction(e, angryEmoji, "angry")},{once : true})  
-            emojiDiv.addEventListener('click', e => {
-                console.log("Hey")
-                e.stopImmediatePropagation()
+                if (!laughClicked && !shockClicked && !angryClicked){
+                    let increment = parseInt(laughCount.textContent);
+                    increment +=1
+                    laughCount.textContent = increment 
+                    console.log("Laugh")
+                    addReaction(e, laughEmoji, "laugh", true)
+                    laughClicked = true
+                }
+                else if (laughClicked && !shockClicked && !angryClicked){
+                    let decrement = parseInt(laughCount.textContent);
+                    decrement -=1
+                    laughCount.textContent = decrement
+                    console.log("Already Chosen")
+                    addReaction(e, laughEmoji, "laugh", false)
+                    laughClicked = false
+                }
+                console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
+                // shockEmoji.style.display = "none"
+                // shockCount.style.display = "none"
+                // angryEmoji.style.display = "none"
+                // angryCount.style.display = "none"
+                // createButton(e, laughEmoji, laughCount, "laugh")
             })
+            shockEmoji.addEventListener('click', e => {
+                if (!laughClicked && !shockClicked && !angryClicked){
+                    let increment = parseInt(shockCount.textContent);
+                    increment +=1
+                    shockCount.textContent = increment 
+                    console.log("Shock")
+                    addReaction(e, laughEmoji, "shock", true)
+                    shockClicked = true
+                }
+                else if (!laughClicked && shockClicked && !angryClicked){
+                    let decrement = parseInt(shockCount.textContent);
+                    decrement -=1
+                    shockCount.textContent = decrement
+                    console.log("Already Chosen")
+                    addReaction(e, shockEmoji, "shock", false) 
+                    shockClicked = false
+                }
+                console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
+                // laughEmoji.style.display = "none"
+                // laughCount.style.display = "none"
+                // angryEmoji.style.display = "none"
+                // angryCount.style.display = "none"
+                // createButton(e, shockEmoji, shockCount, "shock")
+            }) 
+            angryEmoji.addEventListener('click', e => {
+                if (!laughClicked && !shockClicked && !angryClicked){
+                    let increment = parseInt(angryCount.textContent);
+                    increment +=1
+                    angryCount.textContent = increment 
+                    console.log("Angry")
+                    addReaction(e, angryEmoji, "angry", true)
+                    angryClicked = true
+                }
+                else if (!laughClicked && !shockClicked && angryClicked){
+                    let decrement = parseInt(angryCount.textContent);
+                    decrement -=1
+                    angryCount.textContent = decrement
+                    console.log("Already Chosen")
+                    addReaction(e, angryEmoji, "laugh", false)
+                    angryClicked = false
+                }
+                console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
+                // shockEmoji.style.display = "none"
+                // shockCount.style.display = "none"
+                // laughEmoji.style.display = "none"
+                // laughCount.style.display = "none"
+                // createButton(e, angryEmoji, angryCount, "angry")
+            })  
             emojiDiv.append(laughEmoji)
             emojiDiv.append(laughCount)
             emojiDiv.append(shockEmoji)
@@ -175,7 +251,6 @@ function display() {
                 let comment = document.createElement('div')
                 let commentText = document.createElement('p')
                 let commentTime = document.createElement('p')
-                console.log(data.posts[i].comments[j].text)
                 commentText.textContent = data.posts[i].comments[j].text
                 commentTime.textContent = data.posts[i].comments[j].dateTime
                 comment.append(commentText)
@@ -280,14 +355,15 @@ function sendComment (e, comment) {
 //     }
 // )}
 
-function addReaction (e, emoji, reaction) { 
+function addReaction (e, emoji, reaction, isAdd) { 
     console.log(reaction + " clicked")
 
     fetch("/community/react", {
         method: "PUT",
         body: JSON.stringify({
             id: emoji.parentNode.parentNode.id,
-            emoji: reaction
+            emoji: reaction,
+            type: isAdd
         }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -296,8 +372,23 @@ function addReaction (e, emoji, reaction) {
     .then(response => response.json())
     .then(json => console.log(json))
     .catch(err => console.warn);
-    // document.location.reload();
 }
+
+// function removeReaction (e, emoji, reaction) {
+//     fetch("/community/changereact", {
+//         method: "PUT",
+//         body: JSON.stringify({
+//             id: emoji.parentNode.parentNode.id,
+//             emoji: reaction
+//         }),
+//         headers: {
+//             "Content-type": "application/json; charset=UTF-8"
+//         }
+//     })
+//     .then(response => response.json())
+//     .then(json => console.log(json))
+//     .catch(err => console.warn);
+// }
 
 function showForm (e) {
     e.preventDefault();
