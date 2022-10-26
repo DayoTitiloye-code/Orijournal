@@ -47,6 +47,7 @@ function addComment (data) {
 // }
 
 function reaction (data){
+  console.log("Server")
   let fileName = 'data.json';
   let m = JSON.parse(fs.readFileSync(fileName).toString());
   let index = m.posts.findIndex(obj => obj.id == data.id)
