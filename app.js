@@ -68,6 +68,8 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')))
 
 app.get('/community', async (req, res) => res.sendFile(path.join(__dirname, '/community.html')))
 
+app.get('/about', async (req, res) => res.sendFile(path.join(__dirname, '/about.html')))
+
 app.post('/community', async (req, res) => {
   saveData(req.body)
 })

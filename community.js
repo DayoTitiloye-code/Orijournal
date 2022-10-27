@@ -367,6 +367,8 @@ function sendComment (e, comment) {
     .then(response => response.json())
     .then(json => console.log(json))
     .catch(err => console.warn);
+    comment.textContent = ''
+    document.location.reload()
 }
 
 // function sortByDesc (e) {
