@@ -1,6 +1,6 @@
 const request = require("supertest")
 global.fetch = require('jest-fetch-mock');
-let { app, getData, getPostsCount } = require('./app')
+let { app, getData, getPostsCount } = require('../app')
 
 describe('API server', () => {
     let api

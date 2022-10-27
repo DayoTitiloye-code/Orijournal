@@ -21,17 +21,17 @@ function getPostsCount() {
   return data.posts.length
 }
 
-app.get('/getData', (req, res) => {
+app.get('https://orijournal.herokuapp.com/getData', (req, res) => {
     res.send(getData())
   })
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')))
 
-app.get('/community', async (req, res) => res.sendFile(path.join(__dirname, '/community.html')))
+app.get('/community', async (req, res) => res.sendFile(path.join(__dirname, '../client/community.html')))
 
 app.get('/about', async (req, res) => res.sendFile(path.join(__dirname, '/about.html')))
 
-app.post('/community', async (req, res) => {
+app.post('https://orijournal.herokuapp.com/community', async (req, res) => {
     data = req.body
     let fileName = 'data.json';
     let file = JSON.parse(fs.readFileSync(fileName).toString());
@@ -51,7 +51,7 @@ app.get('/community.js', async (req, res) => res.sendFile(path.join(__dirname, '
 
 app.get('/favicon', async (req, res) => res.sendFile(path.join(__dirname, '/chat-quote.svg')))
 
-app.post('/community/comment', async (req, res) => {
+app.post('https://orijournal.herokuapp.com/community/comment', async (req, res) => {
   data = req.body
   let fileName = 'data.json';
   let file = JSON.parse(fs.readFileSync(fileName).toString());
@@ -61,7 +61,7 @@ app.post('/community/comment', async (req, res) => {
   res.send(data)
 })
 
-app.put('/community/react', async (req, res) => {
+app.put('https://orijournal.herokuapp.com/community/react', async (req, res) => {
   let log
   let data = req.body
   let fileName = 'data.json';

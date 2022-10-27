@@ -71,7 +71,7 @@ function getGif(){
 }
 
 function display() {
-    fetch('/getData')
+    fetch('https://orijournal.herokuapp.com/getData')
     .then(resp => resp.json())
     .then(data => {
         let posts = data.posts.reverse()
@@ -274,7 +274,7 @@ function sendPost() {
     const outputPost = document.querySelector("#post");
     const gif = document.querySelector("#result img");
 
-    fetch("/community", {
+    fetch("https://orijournal.herokuapp.com/community", {
         method: "POST",
         body: JSON.stringify(
             {
@@ -306,7 +306,7 @@ function sendPost() {
 function sendComment (e, comment) {
     e.preventDefault()
     console.log("Pressed")
-    fetch("/community/comment", {
+    fetch("https://orijournal.herokuapp.com/community/comment", {
         method: "POST",
         body: JSON.stringify(
             {
@@ -326,7 +326,7 @@ function sendComment (e, comment) {
 }
 
 function addReaction (emoji, reaction, isAdd) { 
-    fetch("/community/react", {
+    fetch("https://orijournal.herokuapp.com/community/react", {
         method: "PUT",
         body: JSON.stringify({
             id: emoji.parentNode.parentNode.parentNode.id,
