@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1666870527785" clover="3.2.0">
+  <project timestamp="1666870527786" name="All files">
+    <metrics statements="53" coveredstatements="38" conditionals="4" coveredconditionals="3" methods="19" coveredmethods="9" elements="76" coveredelements="50" complexity="0" loc="53" ncloc="53" packages="1" files="1" classes="1"/>
+    <file name="app.js" path="C:\Users\Bradz\Documents\Futureproof_Exercises\Orijournal\app.js">
+      <metrics statements="53" coveredstatements="38" conditionals="4" coveredconditionals="3" methods="19" coveredmethods="9"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="5" count="1" type="cond" truecount="2" falsecount="0"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="7" count="1" type="stmt"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="10" count="1" type="stmt"/>
+      <line num="13" count="2" type="stmt"/>
+      <line num="14" count="2" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="19" count="0" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+      <line num="21" count="0" type="stmt"/>
+      <line num="22" count="0" type="stmt"/>
+      <line num="23" count="0" type="stmt"/>
+      <line num="27" count="0" type="stmt"/>
+      <line num="28" count="0" type="stmt"/>
+      <line num="29" count="0" type="stmt"/>
+      <line num="30" count="0" type="stmt"/>
+      <line num="31" count="0" type="stmt"/>
+      <line num="50" count="1" type="stmt"/>
+      <line num="52" count="1" type="stmt"/>
+      <line num="53" count="1" type="stmt"/>
+      <line num="54" count="1" type="stmt"/>
+      <line num="55" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="56" count="1" type="stmt"/>
+      <line num="57" count="1" type="stmt"/>
+      <line num="59" count="0" type="stmt"/>
+      <line num="60" count="0" type="stmt"/>
+      <line num="62" count="1" type="stmt"/>
+      <line num="63" count="1" type="stmt"/>
+      <line num="67" count="1" type="stmt"/>
+      <line num="68" count="1" type="stmt"/>
+      <line num="69" count="1" type="stmt"/>
+      <line num="74" count="1" type="stmt"/>
+      <line num="75" count="2" type="stmt"/>
+      <line num="78" count="1" type="stmt"/>
+      <line num="80" count="1" type="stmt"/>
+      <line num="82" count="1" type="stmt"/>
+      <line num="84" count="1" type="stmt"/>
+      <line num="85" count="0" type="stmt"/>
+      <line num="88" count="1" type="stmt"/>
+      <line num="90" count="1" type="stmt"/>
+      <line num="92" count="1" type="stmt"/>
+      <line num="94" count="1" type="stmt"/>
+      <line num="97" count="1" type="stmt"/>
+      <line num="98" count="0" type="stmt"/>
+      <line num="106" count="1" type="stmt"/>
+      <line num="107" count="0" type="stmt"/>
+      <line num="111" count="1" type="stmt"/>
+      <line num="113" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

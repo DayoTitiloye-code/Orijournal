@@ -17,18 +17,18 @@ function getData() {
 
 function saveData (data) {
   let fileName = 'data.json';
-  let m = JSON.parse(fs.readFileSync(fileName).toString());
-  data.id = m.posts.length+1
-  m.posts.push(data)
-  fs.writeFileSync(fileName, JSON.stringify(m));
+  let file = JSON.parse(fs.readFileSync(fileName).toString());
+  data.id = file.posts.length+1
+  file.posts.push(data)
+  fs.writeFileSync(fileName, JSON.stringify(file));
 }
 
 function addComment (data) {
   let fileName = 'data.json';
-  let m = JSON.parse(fs.readFileSync(fileName).toString());
-  let index = m.posts.findIndex(obj => obj.id == data.post)
-  m.posts[index].comments.push(data)
-  fs.writeFileSync(fileName, JSON.stringify(m));
+  let file = JSON.parse(fs.readFileSync(fileName).toString());
+  let index = file.posts.findIndex(obj => obj.id == data.post)
+  filemfile.posts[index].comments.push(data)
+  fs.writeFileSync(fileName, JSON.stringify(file));
 }
 
 // function addReaction (data) {
@@ -48,14 +48,25 @@ function addComment (data) {
 
 function reaction (data){
   console.log("Server")
+  let log;
   let fileName = 'data.json';
-  let m = JSON.parse(fs.readFileSync(fileName).toString());
-  let index = m.posts.findIndex(obj => obj.id == data.id)
-  if(data.type) m.posts[index].reactions[data.emoji] ++
-  else m.posts[index].reactions[data.emoji] --
-  fs.writeFileSync(fileName, JSON.stringify(m));
-  
+  let file = JSON.parse(fs.readFileSync(fileName).toString());
+  let index = file.posts.findIndex(obj => obj.id == data.id)
+  if(data.type){ 
+    file.posts[index].reactions[data.emoji] ++; 
+    log = `${data.emoji} added to post`
+  } else{
+    file.posts[index].reactions[data.emoji] --; 
+    log = `${data.emoji} removed from post`
+  }
+  fs.writeFileSync(fileName, JSON.stringify(file));
+  return log
+}
 
+function jsonLength() {
+  let fileName = 'data.json';
+  let data = JSON.parse(fs.readFileSync(fileName).toString());
+  return data.posts.length
 }
 
 // app.use(express.static(path.join(__dirname, '../client/assets')))
@@ -82,7 +93,6 @@ app.get('/community.js', async (req, res) => res.sendFile(path.join(__dirname, '
 
 app.get('/favicon', async (req, res) => res.sendFile(path.join(__dirname, '/chat-quote.svg')))
 
-
 app.post('/community/comment', async (req, res) => {
   addComment(req.body)
 })
@@ -98,3 +108,5 @@ app.put('/community/react', async (req, res) => {
 
 
 app.listen(port, () => console.log(`Now running on http://localhost:${port}`))
+
+module.exports = { app, saveData, getData, addComment, reaction }
