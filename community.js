@@ -28,13 +28,11 @@ function getGif(){
     fetch(`https://api.giphy.com/v1/gifs/search?q=${search.value}&api_key=${apiKey}&rating=pg&limit=10`)
     .then((response) => response.json())
     .then((data) => {
-        // console.log(data)
         let results = document.querySelector('#results')
         let result = document.querySelector('#result')
         
         data.data.forEach((obj) =>{
             console.log(obj.images.downsized.url)
-            // let a = document.createElement('a')
             let img = document.createElement('img')
             img.style.width = '70px'
             img.style.height = '70px'
@@ -42,9 +40,6 @@ function getGif(){
             img.src = obj.images.original.url
             img.alt =  obj.title
 
-            // a.setAttribute('href', obj.images.downsized.url)
-            // a.append(img)
-            // results.append(a)
             results.append(img)
             function addGif(e){
                 result.style.display ='block'
@@ -55,14 +50,12 @@ function getGif(){
                 results.style.display = 'none'
             }
             
-            
             img.addEventListener('click', addGif)
 
             let remove = document.querySelector('#btn-remove')
 
             remove.addEventListener('click', (e) =>{
                 if(result.contains(img)){
-                    // 
                     result.style.display = 'none'
                     result.removeChild(img)
                     results.style.display = 'block'
@@ -81,17 +74,18 @@ function display() {
     fetch('/getData')
     .then(resp => resp.json())
     .then(data => {
-        for(let i = 0; i < data.posts.length; i++){
+        let posts = data.posts.reverse()
+        for(let i = 0; i < posts.length; i++){
             let div = document.createElement('div')
-            div.id = data.posts[i].id
+            div.id = posts[i].id
             div.className = 'post-block'
             let title = document.createElement('h3')
             title.id = "title"
-            title.textContent = data.posts[i].title
+            title.textContent = posts[i].title
             let p = document.createElement('p')
-            p.textContent = data.posts[i].text
+            p.textContent = posts[i].text
             let gif = document.createElement('img')
-            gif.src = data.posts[i].gif
+            gif.src = posts[i].gif
             let interact1 = document.createElement('div')
             interact1.id = "interact"
             let interact2 = document.createElement('div')
@@ -109,47 +103,28 @@ function display() {
             let laughEmoji = document.createElement('a')
             let laughCount = document.createElement('p')
             laughEmoji.innerHTML = '&#129315;'
-            laughCount.textContent =  data.posts[i].reactions.laugh
+            laughCount.textContent =  posts[i].reactions.laugh
             let shockEmoji = document.createElement('a')
             let shockCount = document.createElement('p')
             shockEmoji.innerHTML = '&#128558;'
-            shockCount.textContent = data.posts[i].reactions.shock
+            shockCount.textContent = posts[i].reactions.shock
             let angryEmoji = document.createElement('a')
             let angryCount = document.createElement('p') 
             angryEmoji.innerHTML = '&#128544;'   
-            angryCount.textContent = data.posts[i].reactions.angry
-            // function createButton (e, emoji, emojiCount, reaction) {
-            //     let reset = document.createElement('button')
-            //     reset.textContent = 'Change Reaction'
-            //     reset.id = reaction
-            //     reset.addEventListener('click', e => {
-            //         laughEmoji.style.display = "block"
-            //         laughCount.style.display = "block"
-            //         shockEmoji.style.display = "block"
-            //         shockCount.style.display = "block"
-            //         angryEmoji.style.display = "block"
-            //         angryCount.style.display = "block"
-            //         addReaction(e, emoji, reaction, false)
-            //         let decrement = parseInt(emojiCount.textContent);
-            //         decrement -=1
-            //         emojiCount.textContent = decrement 
-            //         document.querySelector('#emoji-div button').remove()
-            //     })
-            //     emojiDiv.append(reset)
-                
-            // }
+            angryCount.textContent = posts[i].reactions.angry
+
             let laughClicked = false
             let shockClicked = false
             let angryClicked = false
             
-            laughEmoji.addEventListener('click', async e => {
+            laughEmoji.addEventListener('click', e => {
                 console.log("Client laugh emoji")
                 if (!laughClicked && !shockClicked && !angryClicked){
                     let increment = parseInt(laughCount.textContent);
                     increment +=1
                     laughCount.textContent = increment 
                     console.log("Laugh")
-                    await addReaction(e, laughEmoji, "laugh", true)
+                    addReaction(laughEmoji, "laugh", true)
                     laughEmoji.className = "clicked-emoji"
                     laughClicked = true
                 }
@@ -158,20 +133,20 @@ function display() {
                     decrement -=1
                     laughCount.textContent = decrement
                     console.log("Already Chosen")
-                    await addReaction(e, laughEmoji, "laugh", false)
+                    addReaction(laughEmoji, "laugh", false)
                     laughEmoji.classList.remove("clicked-emoji")
                     laughClicked = false
                 }
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
             })
-            shockEmoji.addEventListener('click', async e => {
+            shockEmoji.addEventListener('click', e => {
                 console.log("Client shock emoji")
                 if (!laughClicked && !shockClicked && !angryClicked){
                     let increment = parseInt(shockCount.textContent);
                     increment +=1
                     shockCount.textContent = increment 
                     console.log("Shock")
-                    await addReaction(e, laughEmoji, "shock", true)
+                    addReaction(shockEmoji, "shock", true)
                     shockEmoji.className = "clicked-emoji"
                     shockClicked = true
                 }
@@ -180,21 +155,21 @@ function display() {
                     decrement -=1
                     shockCount.textContent = decrement
                     console.log("Already Chosen")
-                    await addReaction(e, shockEmoji, "shock", false)
+                    addReaction(shockEmoji, "shock", false)
                     shockEmoji.className = ""
                     shockClicked = false
                 }
                 else{console.log("Irregular occurence")}
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
             }) 
-            angryEmoji.addEventListener('click', async e => {
+            angryEmoji.addEventListener('click', e => {
                 console.log("Client angry emoji")
                 if (!laughClicked && !shockClicked && !angryClicked){
                     let increment = parseInt(angryCount.textContent);
                     increment +=1
                     angryCount.textContent = increment 
                     console.log("Angry")
-                    await addReaction(e, angryEmoji, "angry", true)
+                    addReaction(angryEmoji, "angry", true)
                     angryEmoji.className = "clicked-emoji"
                     angryClicked = true
                 }
@@ -203,7 +178,7 @@ function display() {
                     decrement -=1
                     angryCount.textContent = decrement
                     console.log("Already Chosen")
-                    await addReaction(e, angryEmoji, "angry", false)
+                    addReaction(angryEmoji, "angry", false)
                     angryEmoji.className = ""
                     angryClicked = false
                 }
@@ -234,44 +209,24 @@ function display() {
                 }
             }
 
-            let mostRecent = document.createElement('button');
-            mostRecent.id = '#mostrecent';
-            mostRecent.textContent = "Sort by Most Recent";
-
-            function showNewest(array) {
-                for(let j = 0; j < array.length; j++){
-                    let comment = document.createElement('p')
-                    console.log(array.text)
-                    comment.textContent = array.text
-                    divComments.append(comment)
-                }}
-
-            
-            mostRecent.addEventListener('click', showNewest);
-            let newest = false;
-            let arr = data.posts[i].comments;
-            if(!newest) arr = arr.reverse()
-            
-            divComments.append(mostRecent)
-
 
             let commentNumber = document.createElement('h6');
             commentNumber.id = '#commentnumber'
-            commentNumber.textContent = `${data.posts[i].comments.length} comments`
+            commentNumber.textContent = `${posts[i].comments.length} comments`
 
             let postDate = document.createElement('p');
             postDate.id = 'postdate'
-            postDate.textContent = `${data.posts[i].dateTime}`
+            postDate.textContent = `${posts[i].dateTime}`
 
 
             
-
-            for(let j = 0; j < data.posts[i].comments.length; j++){
+            let commentsArray = posts[i].comments.reverse()
+            for(let j = 0; j < commentsArray.length; j++){
                 let comment = document.createElement('div')
                 let commentText = document.createElement('p')
                 let commentTime = document.createElement('p')
-                commentText.textContent = data.posts[i].comments[j].text
-                commentTime.textContent = data.posts[i].comments[j].dateTime
+                commentText.textContent = commentsArray[j].text
+                commentTime.textContent = commentsArray[j].dateTime
                 comment.append(commentTime)
                 comment.append(commentText)
                 divComments.append(comment)
@@ -347,7 +302,6 @@ function sendPost() {
 
     outputTitle.value = ""
     outputPost.value = ""
-    // hideForm(e)
 }
 
 function sendComment (e, comment) {
@@ -372,18 +326,7 @@ function sendComment (e, comment) {
     document.location.reload()
 }
 
-// function sortByDesc (e) {
-//     e.preventDefault();
-//     fetch("http://localhost:3000/community/comment", {
-//         dateTime.map(obj => {
-//             return {...obj, date: new Date(obj.date)};
-//           })
-//     }
-// )}
-
-function addReaction (e, emoji, reaction, isAdd) { 
-    console.log("Client reacted")
-
+function addReaction (emoji, reaction, isAdd) { 
     fetch("/community/react", {
         method: "PUT",
         body: JSON.stringify({
@@ -400,31 +343,19 @@ function addReaction (e, emoji, reaction, isAdd) {
     .catch(err => console.warn);
 }
 
-// function removeReaction (e, emoji, reaction) {
-//     fetch("/community/changereact", {
-//         method: "PUT",
-//         body: JSON.stringify({
-//             id: emoji.parentNode.parentNode.id,
-//             emoji: reaction
-//         }),
-//         headers: {
-//             "Content-type": "application/json; charset=UTF-8"
-//         }
-//     })
-//     .then(response => response.json())
-//     .then(json => console.log(json))
-//     .catch(err => console.warn);
-// }
 
-// function showForm (e) {
-//     e.preventDefault();
-//     document.querySelector('#write-post').style.display = "block";
-// }
+function showForm (e) {
+    e.preventDefault();
+    document.querySelector('#write-post').style.display = "block";
+}
 
 function hideForm (e) {
     e.preventDefault();
     document.querySelector('#write-post').style.display = "none"
 }
 
-
-
+window.onbeforeunload = function(event)
+    {
+        event.preventDefault()
+        alert("Refresh called")
+    };
