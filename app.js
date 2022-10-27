@@ -15,59 +15,7 @@ function getData() {
     return data
 }
 
-<<<<<<< HEAD
-function saveData (data) {
-  let fileName = 'data.json';
-  let file = JSON.parse(fs.readFileSync(fileName).toString());
-  data.id = file.posts.length+1
-  file.posts.push(data)
-  fs.writeFileSync(fileName, JSON.stringify(file));
-}
-
-function addComment (data) {
-  let fileName = 'data.json';
-  let file = JSON.parse(fs.readFileSync(fileName).toString());
-  let index = file.posts.findIndex(obj => obj.id == data.post)
-  file.posts[index].comments.push(data)
-  fs.writeFileSync(fileName, JSON.stringify(file));
-}
-
-// function addReaction (data) {
-//   let fileName = 'data.json';
-//   let m = JSON.parse(fs.readFileSync(fileName).toString());
-//   let index = m.posts.findIndex(obj => obj.id == data.id)
-//   m.posts[index].reactions[data.emoji] ++
-//   fs.writeFileSync(fileName, JSON.stringify(m));
-// }
-
-// function removeReaction (data) {
-//   let fileName = 'data.json';
-//   let m = JSON.parse(fs.readFileSync(fileName).toString());
-//   let index = m.posts.findIndex(obj => obj.id == data.id)
-//   fs.writeFileSync(fileName, JSON.stringify(m));
-// }
-
-function reaction (data){
-  console.log("Server")
-  let log;
-  let fileName = 'data.json';
-  let file = JSON.parse(fs.readFileSync(fileName).toString());
-  let index = file.posts.findIndex(obj => obj.id == data.id)
-  if(data.type){ 
-    file.posts[index].reactions[data.emoji] ++; 
-    log = `${data.emoji} added to post`
-  } else{
-    file.posts[index].reactions[data.emoji] --; 
-    log = `${data.emoji} removed from post`
-  }
-  fs.writeFileSync(fileName, JSON.stringify(file));
-  return log
-}
-
-function jsonLength() {
-=======
 function getPostsCount() {
->>>>>>> 83dc9f939231ce4e4fb720e0178e8c0dead94d54
   let fileName = 'data.json';
   let data = JSON.parse(fs.readFileSync(fileName).toString());
   return data.posts.length
