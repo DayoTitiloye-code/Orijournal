@@ -29,13 +29,11 @@ function getGif(){
     fetch(`https://api.giphy.com/v1/gifs/search?q=${search.value}&api_key=${apiKey}&rating=pg&limit=10`)
     .then((response) => response.json())
     .then((data) => {
-        // console.log(data)
         let results = document.querySelector('#results')
         let result = document.querySelector('#result')
         
         data.data.forEach((obj) =>{
             console.log(obj.images.downsized.url)
-            // let a = document.createElement('a')
             let img = document.createElement('img')
             img.style.width = '70px'
             img.style.height = '70px'
@@ -43,9 +41,6 @@ function getGif(){
             img.src = obj.images.original.url
             img.alt =  obj.title
 
-            // a.setAttribute('href', obj.images.downsized.url)
-            // a.append(img)
-            // results.append(a)
             results.append(img)
             function addGif(e){
                 result.style.display ='block'
@@ -56,14 +51,12 @@ function getGif(){
                 results.style.display = 'none'
             }
             
-            
             img.addEventListener('click', addGif)
 
             let remove = document.querySelector('#btn-remove')
 
             remove.addEventListener('click', (e) =>{
                 if(result.contains(img)){
-                    // 
                     result.style.display = 'none'
                     result.removeChild(img)
                     results.style.display = 'block'
@@ -120,38 +113,19 @@ function display() {
             let angryCount = document.createElement('p') 
             angryEmoji.innerHTML = '&#128544;'   
             angryCount.textContent = posts[i].reactions.angry
-            // function createButton (e, emoji, emojiCount, reaction) {
-            //     let reset = document.createElement('button')
-            //     reset.textContent = 'Change Reaction'
-            //     reset.id = reaction
-            //     reset.addEventListener('click', e => {
-            //         laughEmoji.style.display = "block"
-            //         laughCount.style.display = "block"
-            //         shockEmoji.style.display = "block"
-            //         shockCount.style.display = "block"
-            //         angryEmoji.style.display = "block"
-            //         angryCount.style.display = "block"
-            //         addReaction(e, emoji, reaction, false)
-            //         let decrement = parseInt(emojiCount.textContent);
-            //         decrement -=1
-            //         emojiCount.textContent = decrement 
-            //         document.querySelector('#emoji-div button').remove()
-            //     })
-            //     emojiDiv.append(reset)
-                
-            // }
+
             let laughClicked = false
             let shockClicked = false
             let angryClicked = false
             
-            laughEmoji.addEventListener('click', async e => {
+            laughEmoji.addEventListener('click', e => {
                 console.log("Client laugh emoji")
                 if (!laughClicked && !shockClicked && !angryClicked){
                     let increment = parseInt(laughCount.textContent);
                     increment +=1
                     laughCount.textContent = increment 
                     console.log("Laugh")
-                    await addReaction(e, laughEmoji, "laugh", true)
+                    addReaction(laughEmoji, "laugh", true)
                     laughEmoji.className = "clicked-emoji"
                     laughClicked = true
                 }
@@ -160,20 +134,20 @@ function display() {
                     decrement -=1
                     laughCount.textContent = decrement
                     console.log("Already Chosen")
-                    await addReaction(e, laughEmoji, "laugh", false)
+                    addReaction(laughEmoji, "laugh", false)
                     laughEmoji.classList.remove("clicked-emoji")
                     laughClicked = false
                 }
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
             })
-            shockEmoji.addEventListener('click', async e => {
+            shockEmoji.addEventListener('click', e => {
                 console.log("Client shock emoji")
                 if (!laughClicked && !shockClicked && !angryClicked){
                     let increment = parseInt(shockCount.textContent);
                     increment +=1
                     shockCount.textContent = increment 
                     console.log("Shock")
-                    await addReaction(e, laughEmoji, "shock", true)
+                    addReaction(shockEmoji, "shock", true)
                     shockEmoji.className = "clicked-emoji"
                     shockClicked = true
                 }
@@ -182,21 +156,21 @@ function display() {
                     decrement -=1
                     shockCount.textContent = decrement
                     console.log("Already Chosen")
-                    await addReaction(e, shockEmoji, "shock", false)
+                    addReaction(shockEmoji, "shock", false)
                     shockEmoji.className = ""
                     shockClicked = false
                 }
                 else{console.log("Irregular occurence")}
                 console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
             }) 
-            angryEmoji.addEventListener('click', async e => {
+            angryEmoji.addEventListener('click', e => {
                 console.log("Client angry emoji")
                 if (!laughClicked && !shockClicked && !angryClicked){
                     let increment = parseInt(angryCount.textContent);
                     increment +=1
                     angryCount.textContent = increment 
                     console.log("Angry")
-                    await addReaction(e, angryEmoji, "angry", true)
+                    addReaction(angryEmoji, "angry", true)
                     angryEmoji.className = "clicked-emoji"
                     angryClicked = true
                 }
@@ -205,7 +179,7 @@ function display() {
                     decrement -=1
                     angryCount.textContent = decrement
                     console.log("Already Chosen")
-                    await addReaction(e, angryEmoji, "angry", false)
+                    addReaction(angryEmoji, "angry", false)
                     angryEmoji.className = ""
                     angryClicked = false
                 }
@@ -327,7 +301,6 @@ function sendPost() {
 
     outputTitle.value = ""
     outputPost.value = ""
-    // hideForm(e)
 }
 
 function sendComment (e, comment) {
@@ -352,18 +325,7 @@ function sendComment (e, comment) {
     document.location.reload()
 }
 
-// function sortByDesc (e) {
-//     e.preventDefault();
-//     fetch("http://localhost:3000/community/comment", {
-//         dateTime.map(obj => {
-//             return {...obj, date: new Date(obj.date)};
-//           })
-//     }
-// )}
-
-function addReaction (e, emoji, reaction, isAdd) { 
-    console.log("Client reacted")
-
+function addReaction (emoji, reaction, isAdd) { 
     fetch("/community/react", {
         method: "PUT",
         body: JSON.stringify({
@@ -380,22 +342,6 @@ function addReaction (e, emoji, reaction, isAdd) {
     .catch(err => console.warn);
 }
 
-// function removeReaction (e, emoji, reaction) {
-//     fetch("/community/changereact", {
-//         method: "PUT",
-//         body: JSON.stringify({
-//             id: emoji.parentNode.parentNode.id,
-//             emoji: reaction
-//         }),
-//         headers: {
-//             "Content-type": "application/json; charset=UTF-8"
-//         }
-//     })
-//     .then(response => response.json())
-//     .then(json => console.log(json))
-//     .catch(err => console.warn);
-// }
-
 function showForm (e) {
     e.preventDefault();
     document.querySelector('#write-post').style.display = "block";
@@ -406,5 +352,8 @@ function hideForm (e) {
     document.querySelector('#write-post').style.display = "none"
 }
 
-
-
+window.onbeforeunload = function(event)
+    {
+        event.preventDefault()
+        alert("Refresh called")
+    };
