@@ -2,7 +2,7 @@ const body = document.querySelector('body');
 const postButton = document.querySelector('#post-button');
 const form = document.getElementById("post-form");
 const cover = document.querySelector('main.inner')
-postButton.addEventListener('click', showForm);
+// postButton.addEventListener('click', showForm);
 
 const exitButton = document.querySelector('#exit-button')
 const sendButton = document.querySelector('#send-button')
@@ -10,12 +10,11 @@ const gifButton = document.querySelector('#btn-gif')
 let apiKey = `NLls5Old8idRIHlgjN8gBEsyCHM6MlSH`
 let search = document.querySelector('#search')
 
-postButton.addEventListener('click', showForm)
-exitButton.addEventListener('click', hideForm)
+// postButton.addEventListener('click', showForm)
+// exitButton.addEventListener('click', hideForm)
 let gifChange = document.querySelector('#btn-remove')
 gifChange.style.display = 'none'
-gifButton.style.height ='25px'
-gifButton.style.width ='100px'
+
 
 gifButton.addEventListener('click', (e) =>{
     e.preventDefault()
@@ -286,6 +285,7 @@ function display() {
             interact1.append(emojiDiv)
             interact2.append(button)
             interact2.append(commentNumber)
+            console.log(interact1)
             div.append(postDate)
             div.append(title)
             div.append(p)
@@ -293,6 +293,7 @@ function display() {
             div.append(interact1)
             div.append(interact2)
             div.append(divComments)
+            console.log(div)
             cover.append(div)
         }
     })
@@ -415,10 +416,10 @@ function addReaction (e, emoji, reaction, isAdd) {
 //     .catch(err => console.warn);
 // }
 
-function showForm (e) {
-    e.preventDefault();
-    document.querySelector('#write-post').style.display = "block";
-}
+// function showForm (e) {
+//     e.preventDefault();
+//     document.querySelector('#write-post').style.display = "block";
+// }
 
 function hideForm (e) {
     e.preventDefault();

@@ -82,6 +82,8 @@ app.get('/community.js', async (req, res) => res.sendFile(path.join(__dirname, '
 
 app.get('/favicon', async (req, res) => res.sendFile(path.join(__dirname, '/chat-quote.svg')))
 
+app.get('/about.css', async (req, res) => res.sendFile(path.join(__dirname, '/about.css')))
+
 
 app.post('/community/comment', async (req, res) => {
   addComment(req.body)
