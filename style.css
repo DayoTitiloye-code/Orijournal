@@ -40,6 +40,11 @@ main {
     float: left;
     color: white;
     padding: 0 16px 8px !important;
+    background-color: #C06014;
+    border-radius: 0.375rem !important;
+    height: 40px;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .nav-masthead {
@@ -76,7 +81,7 @@ p {
 }
 
 .btn {
-    background-color: #C06014 !important;
+    background-color: #0048B2 !important;
     border: none !important;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
     transition: 0.5s !important;
@@ -84,7 +89,7 @@ p {
 }
 
 .btn:hover {
-    background-color: #536162 !important;
+    background-color: #C06014 !important;
     transform: scale(1.1) !important;
     transition: 0.5s !important;
 
