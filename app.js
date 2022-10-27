@@ -44,6 +44,8 @@ app.post('/community', async (req, res) => {
 
 app.get('/style.css', async (req, res) => res.sendFile(path.join(__dirname, '/style.css')))
 
+app.get('/about.css', async (req, res) => res.sendFile(path.join(__dirname, '/about.css')))
+
 app.get('/community.css', async (req, res) => res.sendFile(path.join(__dirname, '/community.css')))
 
 app.get('/community.js', async (req, res) => res.sendFile(path.join(__dirname, '/community.js')))

@@ -8,7 +8,6 @@
     box-sizing: border-box;
 }
 
-
 body {
     justify-content: center;
     text-align: center !important;
@@ -16,7 +15,6 @@ body {
     background-attachment: fixed;
     background-position: center center;
     background-size: cover; 
-    
 }
 
 .cover-container {
@@ -33,15 +31,22 @@ div {
 }
 
 main {
-    margin-top: 15em;
+    margin-top: 15px;
     background: transparent;
-    border-radius: 30px;
+    border-radius: 0.375rem;
+    
+
 }
 
 .masthead-brand {
     float: left;
     color: white;
     padding: 0 16px 8px !important;
+    background-color: #C06014;
+    border-radius: 0.375rem !important;
+    height: 40px;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .nav-masthead {
@@ -62,7 +67,23 @@ main {
 }
 
 h3 {
+    font-family: 'Manrope';
     margin-bottom: 20em;
+    border-top:#C06014 2px solid;
+    color: black;
+}
+
+#testidiv {
+    background-color: black;
+    opacity: 0.7;
+    border-radius: 0.375rem;
+    padding: 10px;
+}
+
+.testimony p {
+    color: white;
+    font-family: 'Poppins';
+    
 }
 
 h1 {
@@ -70,6 +91,7 @@ h1 {
     color: black;
     margin-top: 10px;
     font-family: 'Manrope';
+    border-bottom:#C06014 2px solid;
 }
 
 p {
@@ -78,7 +100,7 @@ p {
 }
 
 .btn {
-    background-color: #C06014 !important;
+    background-color: #0048B2 !important;
     border: none !important;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
     transition: 0.5s !important;
@@ -86,8 +108,26 @@ p {
 }
 
 .btn:hover {
-    background-color: #536162 !important;
+    background-color: #C06014 !important;
     transform: scale(1.1) !important;
     transition: 0.5s !important;
 
+}
+
+#credits {
+    background-color: #C06014;
+    opacity: 0.8;
+    border-radius: 00.375rem;
+    padding: 10px;
+    margin: 5px;
+}
+
+#credits p {
+    font-family: 'Poppins';
+    color: white;
+}
+
+img {
+    border-radius: 5px 20px 5px;
+    margin-top: 10px;
 }

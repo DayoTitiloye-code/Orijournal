@@ -66,6 +66,7 @@ main {
 
 h3 {
     margin-bottom: 20em;
+    font-family: 'Manrope';
 }
 
 h1 {
@@ -78,6 +79,7 @@ h1 {
 p {
     font-family: 'Questrial', sans-serif;
     color: black;
+    
 }
 
 .btn {
