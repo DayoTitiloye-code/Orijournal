@@ -356,7 +356,7 @@ function sendComment (e, comment) {
         method: "POST",
         body: JSON.stringify(
             {
-                post: comment.parentNode.parentNode.id,
+                post: comment.parentNode.parentNode.parentNode.id,
                 text: comment.value, 
                 dateTime: getNow()
             }),
@@ -384,7 +384,7 @@ function addReaction (e, emoji, reaction, isAdd) {
     fetch("/community/react", {
         method: "PUT",
         body: JSON.stringify({
-            id: emoji.parentNode.parentNode.id,
+            id: emoji.parentNode.parentNode.parentNode.id,
             emoji: reaction,
             type: isAdd
         }),
