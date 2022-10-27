@@ -4,13 +4,16 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest --watchAll --env=jsdom",
     "start": "nodemon app.js",
     "coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "nodemonConfig": {
     "ignore": [
       "data.json"
@@ -24,6 +27,7 @@
     "nodemon": "^2.0.20"
   },
   "devDependencies": {
+    "jest-environment-jsdom": "^29.2.2",
     "jest-fetch-mock": "^3.0.3",
     "supertest": "^6.3.1"
   }

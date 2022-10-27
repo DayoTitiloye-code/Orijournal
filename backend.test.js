@@ -1,6 +1,3 @@
-
-const fs = require('fs');
-const path = require('path');
 const request = require("supertest")
 global.fetch = require('jest-fetch-mock');
 let { app, getData, getPostsCount } = require('./app')

@@ -34,3 +34,5 @@
 - Reaction count increments without page having to refresh
 - Displayed date and time of comments
 - Used boolean logic to ensure only one emoji reaction is used at once
+- Completed testing for serverside javascript
+- Created separate file for testing client side javascript

@@ -263,10 +263,9 @@ function getNow () {
     let hour = date.getHours()
     let minute = date.getMinutes()
  
-    return `${hour}:${minute} ${day}/${month}/${year}`
+    return `${hour.toString()}:${minute.toString()} ${day.toString()}/${month.toString()}/${year.toString()}`
 }
 
-getNow()
 display()
 
 function sendPost() {
@@ -343,19 +342,10 @@ function addReaction (emoji, reaction, isAdd) {
     .catch(err => console.warn);
 }
 
-
-function showForm (e) {
-    e.preventDefault();
-    document.querySelector('#write-post').style.display = "block";
-}
-
-function hideForm (e) {
-    e.preventDefault();
-    document.querySelector('#write-post').style.display = "none"
-}
-
 window.onbeforeunload = function(event)
     {
         event.preventDefault()
         alert("Refresh called")
     };
+
+module.exports = { getGif, display, addReaction, getNow, sendPost, sendComment }
