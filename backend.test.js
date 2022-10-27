@@ -3,14 +3,10 @@ const fs = require('fs');
 const path = require('path');
 const request = require("supertest")
 global.fetch = require('jest-fetch-mock');
-let { app, getData, saveData, addComment, reaction } = require('./app')
+let { app, getData, getPostsCount } = require('./app')
 
 describe('API server', () => {
     let api
-    let testCat = {
-        "name": "Bob",
-        "age": 6
-    }
 
     beforeAll(() => {
         // start the server and store it in the api variable
@@ -69,28 +65,63 @@ describe('API server', () => {
     })
 
     describe('add reaction', () => {
-        test('it exists', () => {
-            expect(reaction).toBeDefined()
-        })
+        // test('it exists', () => {
+        //     expect(reaction).toBeDefined()
+        // })
 
-        const testReaction = {
+        const testAddReaction = {
             id: 1,
             emoji: 'laugh',
             type: true
         }
-        
-        test('correct reaction given', () => {
-            expect(reaction(testReaction)).toEqual('laugh added to post')
+        const testRemoveReaction = {
+            id: 1,
+            emoji: 'laugh',
+            type: false
+        }
+
+        test('reaction', done => {
+            request(api)
+            .put('/community/react')
+            .send(testAddReaction)
+            .set('Content-Type', 'application/json; charset=utf-8')
+            .expect(200, 'laugh added to post', done);
+
         })
+           
+        // test('correct reaction given', () => {
+        //     expect(reaction(testAddReaction)).toEqual('laugh added to post')
+        // })
+
+        // test('correct reaction given', () => {
+        //     expect(reaction(testRemoveReaction)).toEqual('laugh removed from post')
+        // })
+
     })
 
     describe('add comments', () => {
-        test('it exists', () => {
-            expect(addComment).toBeDefined()
+
+        test('add comment', (done) => {
+            const comment = JSON.stringify(
+            {
+                post: 1,
+                text: "Test text", 
+                dateTime: ""
+            })
+            request(api)
+            .post('/community/comment')
+            .send(comment)
+            .set('Content-Type', 'application/json; charset=utf-8')
+            .expect(200, {
+                post: 1,
+                text: "Test text", 
+                dateTime: ""
+              }, done);
         })
     })
 
     describe('create post', () => {
+
         const testPost = {
             id: 0,
             title: "Test",
@@ -105,43 +136,26 @@ describe('API server', () => {
             dateTime: ""
         }
 
-        test('it exists', () => {
-            expect(saveData).toBeDefined()
+        test('it creates a post', done => {
+            request(api)
+            .post('/community')
+            .send(JSON.stringify(testPost))
+            .set('Content-Type', 'application/json; charset=utf-8')
+            .expect(200, {
+                id: getPostsCount()+1,
+                title: "Test",
+                text: "Test Text", 
+                comments: [],
+                reactions: {
+                    laugh: 0,
+                    shock: 0,
+                    angry: 0
+                },
+                gif: "",
+                dateTime: ""
+            }, done);
         })
-        // test('it adds a post with status 201', done => {
-        //     request(api)
-        //     .post('/community')
-        //     .send(testPost)
-        //     .set('Content-Type', 'application/json; charset=utf-8')
-        //     .expect(201, done)
-        // })
-
-        
-        // test('it adds a post with status 201', async done => {
-        //     try {
-        //         await request(api).post('/community').send(testPost)
-        //         expect(201, done);
-        //         done()
-        //     } catch (err) {
-        //         console.log(`Error ${err}`)
-        //         done()
-        //     }
-        // })
         
     })
 
-    // describe('emoji reactions', () => {
-    //     const testReact = {
-    //         id: 1,
-    //         emoji: 'laugh',
-    //         type: true
-    //     }
-    //     test('it adds a reaction with status 201', done => {
-    //         request(api)
-    //         .put('/community/react')
-    //         .send(testReact)
-    //         .set('Content-Type', 'application/json; charset=utf-8')
-    //         .expect(200, done)
-    //     })
-    // })
 })
