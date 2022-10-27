@@ -82,17 +82,18 @@ function display() {
     fetch('/getData')
     .then(resp => resp.json())
     .then(data => {
-        for(let i = 0; i < data.posts.length; i++){
+        let posts = data.posts.reverse()
+        for(let i = 0; i < posts.length; i++){
             let div = document.createElement('div')
-            div.id = data.posts[i].id
+            div.id = posts[i].id
             div.className = 'post-block'
             let title = document.createElement('h3')
             title.id = "title"
-            title.textContent = data.posts[i].title
+            title.textContent = posts[i].title
             let p = document.createElement('p')
-            p.textContent = data.posts[i].text
+            p.textContent = posts[i].text
             let gif = document.createElement('img')
-            gif.src = data.posts[i].gif
+            gif.src = posts[i].gif
             let interact1 = document.createElement('div')
             interact1.id = "interact"
             let interact2 = document.createElement('div')
@@ -110,15 +111,15 @@ function display() {
             let laughEmoji = document.createElement('a')
             let laughCount = document.createElement('p')
             laughEmoji.innerHTML = '&#129315;'
-            laughCount.textContent =  data.posts[i].reactions.laugh
+            laughCount.textContent =  posts[i].reactions.laugh
             let shockEmoji = document.createElement('a')
             let shockCount = document.createElement('p')
             shockEmoji.innerHTML = '&#128558;'
-            shockCount.textContent = data.posts[i].reactions.shock
+            shockCount.textContent = posts[i].reactions.shock
             let angryEmoji = document.createElement('a')
             let angryCount = document.createElement('p') 
             angryEmoji.innerHTML = '&#128544;'   
-            angryCount.textContent = data.posts[i].reactions.angry
+            angryCount.textContent = posts[i].reactions.angry
             // function createButton (e, emoji, emojiCount, reaction) {
             //     let reset = document.createElement('button')
             //     reset.textContent = 'Change Reaction'
@@ -235,44 +236,24 @@ function display() {
                 }
             }
 
-            let mostRecent = document.createElement('button');
-            mostRecent.id = '#mostrecent';
-            mostRecent.textContent = "Sort by Most Recent";
-
-            function showNewest(array) {
-                for(let j = 0; j < array.length; j++){
-                    let comment = document.createElement('p')
-                    console.log(array.text)
-                    comment.textContent = array.text
-                    divComments.append(comment)
-                }}
-
-            
-            mostRecent.addEventListener('click', showNewest);
-            let newest = false;
-            let arr = data.posts[i].comments;
-            if(!newest) arr = arr.reverse()
-            
-            divComments.append(mostRecent)
-
 
             let commentNumber = document.createElement('h6');
             commentNumber.id = '#commentnumber'
-            commentNumber.textContent = `${data.posts[i].comments.length} comments`
+            commentNumber.textContent = `${posts[i].comments.length} comments`
 
             let postDate = document.createElement('p');
             postDate.id = 'postdate'
-            postDate.textContent = `${data.posts[i].dateTime}`
+            postDate.textContent = `${posts[i].dateTime}`
 
 
             
-
-            for(let j = 0; j < data.posts[i].comments.length; j++){
+            let commentsArray = posts[i].comments.reverse()
+            for(let j = 0; j < commentsArray.length; j++){
                 let comment = document.createElement('div')
                 let commentText = document.createElement('p')
                 let commentTime = document.createElement('p')
-                commentText.textContent = data.posts[i].comments[j].text
-                commentTime.textContent = data.posts[i].comments[j].dateTime
+                commentText.textContent = commentsArray[j].text
+                commentTime.textContent = commentsArray[j].dateTime
                 comment.append(commentTime)
                 comment.append(commentText)
                 divComments.append(comment)
