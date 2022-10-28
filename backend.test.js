@@ -66,13 +66,8 @@ describe('API server', () => {
             emoji: 'laugh',
             type: true
         }
-        const testRemoveReaction = {
-            id: 1,
-            emoji: 'laugh',
-            type: false
-        }
 
-        test('reaction', done => {
+        test('it adds reaction to post', done => {
             request(api)
             .put('/community/react')
             .send(testAddReaction)
@@ -84,8 +79,7 @@ describe('API server', () => {
     })
 
     describe('add comments', () => {
-
-        test('add comment', (done) => {
+        test('it adds a comment to posts', (done) => {
             const comment = JSON.stringify(
             {
                 post: 1,

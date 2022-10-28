@@ -23,12 +23,4 @@ describe('index.html', () => {
             expect(brand.textContent).toContain('orijournal.');
         })
     })
-    describe("main", () => {
-        test("it has a button that goes to community.html", () => {
-            let btn = document.querySelector("lead");
-            // expect(btn).toBeTruthy();
-            // expect(btn).toHaveAttribute('href', "/community")
-        })
-      
-    })
 })

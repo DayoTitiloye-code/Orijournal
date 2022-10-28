@@ -37,20 +37,7 @@ describe('community.js functions', () => {
     })
 
     describe('Posts', () => {
-        const testPost = JSON.stringify(
-            {
-                id: 0,
-                title: "",
-                text: "", 
-                comments: [],
-                reactions: {
-                    laugh: 0,
-                    shock: 0,
-                    angry: 0
-                },
-                gif: "",
-                dateTime: ""
-            })
+
 
         test('it exists', () => {
             expect(sendPost).toBeDefined()
