@@ -55,10 +55,12 @@ function getGif(){
             let remove = document.querySelector('#btn-remove')
 
             remove.addEventListener('click', (e) =>{
+                e.preventDefault()
+                console.log("Pressed")
                 if(result.contains(img)){
                     result.style.display = 'none'
                     result.removeChild(img)
-                    results.style.display = 'block'
+                    results.style.display = 'flex'
                     results.append(img)
                 }  
                
@@ -348,4 +350,3 @@ window.onbeforeunload = function(event)
         alert("Refresh called")
     };
 
-module.exports = { getGif, display, addReaction, getNow, sendPost, sendComment }
