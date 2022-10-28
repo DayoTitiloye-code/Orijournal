@@ -238,6 +238,7 @@ section#post {
 textarea {
     width: 770px;
     height: 70px;
+    resize: none;
 }
 
 label {
