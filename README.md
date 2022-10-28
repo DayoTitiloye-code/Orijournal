@@ -19,7 +19,7 @@ npm start
 ```
 * Copy and paste the port URL into the searchbar on chrome/safari
 
-## Changelog
+## Contributions
 
 Can be found in the logs folder
 
@@ -28,6 +28,15 @@ Can be found in the logs folder
 * Bradley Gichangi
 * Dayo Titiloye
 * Mason Dietrich
+
+## Technologies
+
+* HTML
+* CSS
+* JavaScript
+* Bootstrap
+* Jest
+* Express
 
 ## Version History
 * 0.1
