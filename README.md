@@ -31,7 +31,7 @@ Can be found in the logs folder
 
 ## Version History
 * 0.1
-    * Initial Release
+* Initial Release
 
 ## License
 This project is licensed under the good-kid-maab-city License 
