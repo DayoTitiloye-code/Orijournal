@@ -11,7 +11,8 @@
     - Changed font
 - Added a suitable background
 - Decided on a colour palette to use for the whole site
-
 - Added the post date to new posts
 - Created and styled an about page for the website
 - Created an animated popup that darkens the background to make it clearer
+- Tested most of the HTML elements to make sure their classes and ID's are working 
+- Added a 'Create' button that sits next to the other navigation bar items
