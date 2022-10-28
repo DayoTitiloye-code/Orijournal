@@ -13,3 +13,5 @@
 - Decided on a colour palette to use for the whole site
 
 - Added the post date to new posts
+- Created and styled an about page for the website
+- Created an animated popup that darkens the background to make it clearer

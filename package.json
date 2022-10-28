@@ -8,6 +8,9 @@
     "start": "nodemon app.js",
     "coverage": "jest --coverage"
   },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -24,6 +27,7 @@
     "nodemon": "^2.0.20"
   },
   "devDependencies": {
+    "jest-environment-jsdom": "^29.2.2",
     "jest-fetch-mock": "^3.0.3",
     "supertest": "^6.3.1"
   }
