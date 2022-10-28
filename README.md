@@ -19,6 +19,10 @@ npm start
 ```
 * Copy and paste the port URL into the searchbar on chrome/safari
 
+## Changelog
+
+[/logs]/Logs
+
 ## Authors
 * Abdul Kamara  
 * Bradley Gichangi

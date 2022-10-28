@@ -1,0 +1,19 @@
+- used fetch to get API from giphy
+- created function to get gif
+- function returned all gifs so needed to find a away to only select one 
+- appended gifs to a tag so they could be selected
+- changed gifs to just being img tags but made them clickable
+- created 2 divs (result & results), 1 to hold 10 gifs, 1 to hold gif selected
+- created addGiff function to allow gif to show on form
+- wrote logic to differentiate selected gif & make it only available gif
+- changed event listener on button to function that add's gifs to div 
+- made gifs changeable on button click
+- fixed logic to make appended chosen gif return back to the list of gifs
+- created logic so that the comments under posts would show/hide when button clicked.
+- dynamically changed button so that text changes from "hide comments" to "view comments"
+- added styling to format of gifs
+- added styling to gifs
+- used flexbox to style post form
+- used logic to hide change gif button until get gif is pressed.
+- created tests for 'about.html'
+- tested for p, img, h1, main tags

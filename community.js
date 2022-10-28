@@ -2,7 +2,6 @@ const body = document.querySelector('body');
 const postButton = document.querySelector('#post-button');
 const form = document.getElementById("post-form");
 const cover = document.querySelector('main.inner')
-// postButton.addEventListener('click', showForm);
 
 const exitButton = document.querySelector('#exit-button')
 const sendButton = document.querySelector('#send-button')
@@ -10,8 +9,6 @@ const gifButton = document.querySelector('#btn-gif')
 let apiKey = `NLls5Old8idRIHlgjN8gBEsyCHM6MlSH`
 let search = document.querySelector('#search')
 
-// postButton.addEventListener('click', showForm)
-// exitButton.addEventListener('click', hideForm)
 let gifChange = document.querySelector('#btn-remove')
 gifChange.style.display = 'none'
 
@@ -41,9 +38,8 @@ function getGif(){
             img.alt =  obj.title
 
             results.append(img)
-            function addGif(e){
+            function addGif(e){ 
                 result.style.display ='block'
-                console.log('heelo')
                 e.preventDefault()
                 let newImg = img
                 result.append(newImg)
@@ -56,7 +52,6 @@ function getGif(){
 
             remove.addEventListener('click', (e) =>{
                 e.preventDefault()
-                console.log("Pressed")
                 if(result.contains(img)){
                     result.style.display = 'none'
                     result.removeChild(img)
@@ -120,12 +115,10 @@ function display() {
             let angryClicked = false
             
             laughEmoji.addEventListener('click', e => {
-                console.log("Client laugh emoji")
                 if (!laughClicked && !shockClicked && !angryClicked){
                     let increment = parseInt(laughCount.textContent);
                     increment +=1
                     laughCount.textContent = increment 
-                    console.log("Laugh")
                     addReaction(laughEmoji, "laugh", true)
                     laughEmoji.className = "clicked-emoji"
                     laughClicked = true
@@ -134,12 +127,10 @@ function display() {
                     let decrement = parseInt(laughCount.textContent);
                     decrement -=1
                     laughCount.textContent = decrement
-                    console.log("Already Chosen")
                     addReaction(laughEmoji, "laugh", false)
                     laughEmoji.classList.remove("clicked-emoji")
                     laughClicked = false
                 }
-                console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
             })
             shockEmoji.addEventListener('click', e => {
                 console.log("Client shock emoji")
@@ -147,7 +138,6 @@ function display() {
                     let increment = parseInt(shockCount.textContent);
                     increment +=1
                     shockCount.textContent = increment 
-                    console.log("Shock")
                     addReaction(shockEmoji, "shock", true)
                     shockEmoji.className = "clicked-emoji"
                     shockClicked = true
@@ -156,21 +146,16 @@ function display() {
                     let decrement = parseInt(shockCount.textContent);
                     decrement -=1
                     shockCount.textContent = decrement
-                    console.log("Already Chosen")
                     addReaction(shockEmoji, "shock", false)
                     shockEmoji.className = ""
                     shockClicked = false
                 }
-                else{console.log("Irregular occurence")}
-                console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
             }) 
             angryEmoji.addEventListener('click', e => {
-                console.log("Client angry emoji")
                 if (!laughClicked && !shockClicked && !angryClicked){
                     let increment = parseInt(angryCount.textContent);
                     increment +=1
                     angryCount.textContent = increment 
-                    console.log("Angry")
                     addReaction(angryEmoji, "angry", true)
                     angryEmoji.className = "clicked-emoji"
                     angryClicked = true
@@ -179,13 +164,10 @@ function display() {
                     let decrement = parseInt(angryCount.textContent);
                     decrement -=1
                     angryCount.textContent = decrement
-                    console.log("Already Chosen")
                     addReaction(angryEmoji, "angry", false)
                     angryEmoji.className = ""
                     angryClicked = false
                 }
-                else{console.log("Irregular occurence")}
-                console.log(`${laughClicked} + ${shockClicked} + ${angryClicked}`)
             })  
             emojiDiv.append(laughEmoji)
             emojiDiv.append(laughCount)
