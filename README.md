@@ -6,7 +6,7 @@ Our community journaling website
 To run locally:
 * clone the repo
 ```
-git clone <ssh-key>
+git clone <ssh-key> or https
 ```
 * In your terminl of choice, change directory (into "Orijournal")
 ```
