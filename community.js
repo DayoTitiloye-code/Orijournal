@@ -55,10 +55,12 @@ function getGif(){
             let remove = document.querySelector('#btn-remove')
 
             remove.addEventListener('click', (e) =>{
+                e.preventDefault()
+                console.log("Pressed")
                 if(result.contains(img)){
                     result.style.display = 'none'
                     result.removeChild(img)
-                    results.style.display = 'block'
+                    results.style.display = 'flex'
                     results.append(img)
                 }  
                
@@ -263,10 +265,9 @@ function getNow () {
     let hour = date.getHours()
     let minute = date.getMinutes()
  
-    return `${hour}:${minute} ${day}/${month}/${year}`
+    return `${hour.toString()}:${minute.toString()} ${day.toString()}/${month.toString()}/${year.toString()}`
 }
 
-getNow()
 display()
 
 function sendPost() {
@@ -343,19 +344,9 @@ function addReaction (emoji, reaction, isAdd) {
     .catch(err => console.warn);
 }
 
-
-function showForm (e) {
-    e.preventDefault();
-    document.querySelector('#write-post').style.display = "block";
-}
-
-function hideForm (e) {
-    e.preventDefault();
-    document.querySelector('#write-post').style.display = "none"
-}
-
 window.onbeforeunload = function(event)
     {
         event.preventDefault()
         alert("Refresh called")
     };
+

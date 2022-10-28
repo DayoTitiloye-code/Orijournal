@@ -62,7 +62,5 @@ describe('community.html', () => {
             expect(main.className).toContain('inner')
         })
     })
-
-    describe(
     
 })
