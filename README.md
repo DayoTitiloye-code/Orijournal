@@ -21,7 +21,7 @@ npm start
 
 ## Changelog
 
-[/logs]/Logs
+Can be found in the logs folder
 
 ## Authors
 * Abdul Kamara  
